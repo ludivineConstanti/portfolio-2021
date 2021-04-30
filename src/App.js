@@ -1,17 +1,19 @@
-import './App.css';
+import { Route, Switch } from "react-router-dom";
 
-function App() {
-  console.log('hello');
+import "./App.css";
+// Pages
+import Dino404 from "./components/pages/Dino404";
+import Home from "./components/pages/Home";
+
+const App = () => {
   return (
     <div className="App">
-      <h1>Welcome!</h1>
-
-      <p>
-        My name is Ludivine Constanti, I am a versatile, multilingual, French
-        Art Director developer.
-      </p>
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/project/dino-404" exact component={Dino404} />
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
