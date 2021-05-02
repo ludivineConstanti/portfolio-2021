@@ -1,16 +1,14 @@
 import styled from "styled-components";
-import { Canvas } from "@react-three/fiber";
 
 export const SHome = styled.div`
   position: fixed;
-  background-color: #1d448b;
+  background-color: #0e184f;
   height: 100vh;
   width: 100vw;
 `;
 
 export const SText = styled.main`
   position: fixed;
-  background-color: #1d448b;
   color: white;
   position: fixed;
   width: 25vw;
@@ -24,8 +22,10 @@ export const STitle = styled.h1`
   font-size: 5vw;
 `;
 
-export const SPParis = styled(Canvas)`
+export const SPParis = styled.div`
   position: fixed;
-  bottom: -20vh;
+  bottom: -100vh;
   left: -25vw;
+  height: 200vh;
+  width: 200vh;
 `;
