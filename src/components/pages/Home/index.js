@@ -2,7 +2,9 @@ import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 
 import PParis from "./PParis";
-import { SHome, SText, STitle, SPParis } from "./SHome";
+import Title from "components/elements/Title";
+import ButtonLink from "components/elements/ButtonLink";
+import { SHome, STextContainer, SText, STextDeco, SPParis } from "./SHome";
 
 // fov => higher number = more perspective + more far away
 // default camera values => { fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }
@@ -10,13 +12,14 @@ import { SHome, SText, STitle, SPParis } from "./SHome";
 const Home = () => {
   return (
     <SHome>
-      <SText>
-        <STitle>Welcome!</STitle>
-        <p>
-          My name is Ludivine Constanti, I am a versatile, multilingual, French
-          Art Director developer.
-        </p>
-      </SText>
+      <STextContainer>
+        <Title>Welcome!</Title>
+        <SText>
+          My name is Ludivine Constanti, I am a versatile, multilingual, French{" "}
+          <STextDeco>Art Director</STextDeco> developer.
+        </SText>
+        <ButtonLink text="See projects" path="/pixiji"></ButtonLink>
+      </STextContainer>
       <SPParis>
         <Canvas camera={{ fov: 50, near: 0.1, far: 1000, position: [0, 0, 5] }}>
           <Suspense fallback={null}>

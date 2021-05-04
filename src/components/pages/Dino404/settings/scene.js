@@ -1,6 +1,8 @@
 import * as THREE from "three";
 
-import matCap from "../assets/matCap.jpg";
+import matcap from "../assets/matCap.jpg";
+import matcapTest from "../assets/try25.png";
+import matcapFloor from "../assets/try25B.png";
 
 let scene,
   camera,
@@ -11,8 +13,6 @@ let scene,
   HEIGHT,
   WIDTH,
   renderer;
-
-let directionalLight;
 
 const limitR = 500;
 const limitL = -limitR;
@@ -102,7 +102,9 @@ const Colors = {
   white: new THREE.Color(0xffffff).convertSRGBToLinear(),
 };
 
-const tMatCap = new THREE.TextureLoader().load(matCap);
+const tMatcap = new THREE.TextureLoader().load(matcap);
+const tMatcapTest = new THREE.TextureLoader().load(matcapTest);
+const tMatcapFloor = new THREE.TextureLoader().load(matcapFloor);
 
 // The Mesh Phong Material can reflect the light, unlike the Mesh Lambert material
 // It's less accurate than Mesh Standard Material or Mesh Physical Material
@@ -110,25 +112,25 @@ const tMatCap = new THREE.TextureLoader().load(matCap);
 const redMat = new THREE.MeshMatcapMaterial({
   color: Colors.red,
   flatShading: true,
-  matcap: tMatCap,
+  matcap: tMatcapTest,
 });
 
 const whiteMat = new THREE.MeshMatcapMaterial({
   color: Colors.white,
   flatShading: true,
-  matcap: tMatCap,
+  matcap: tMatcap,
 });
 
 const whiteMatFloor = new THREE.MeshMatcapMaterial({
   color: Colors.white,
   flatShading: true,
-  matcap: tMatCap,
+  matcap: tMatcapFloor,
 });
 
 const multiMat = new THREE.MeshMatcapMaterial({
   vertexColors: true,
   shading: THREE.FlatShading,
-  matcap: tMatCap,
+  matcap: tMatcap,
 });
 
 function assignColor(color, geom) {

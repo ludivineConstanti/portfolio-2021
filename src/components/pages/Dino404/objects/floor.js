@@ -8,7 +8,7 @@ import {
   assignColor,
 } from "../settings/scene.js";
 
-import { BufferGeometryUtils } from "../../../../helpers/BufferGeometry";
+import { BufferGeometryUtils } from "helpers/BufferGeometry";
 
 const visibleFloor = [];
 const invisibleFloor = [];

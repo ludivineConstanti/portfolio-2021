@@ -9,7 +9,7 @@ import {
   limitL,
 } from "../settings/scene.js";
 
-import { BufferGeometryUtils } from "../../../../helpers/BufferGeometry";
+import { BufferGeometryUtils } from "helpers/BufferGeometry";
 
 import { dino } from "./dino.js";
 
