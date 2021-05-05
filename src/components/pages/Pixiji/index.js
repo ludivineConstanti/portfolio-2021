@@ -9,8 +9,13 @@ const Pixiji = () => {
       <Title useCase="top">Pixiji</Title>
       <InfosProject
         color={r.project1.color}
-        concept={{ text: concept, columnCount: 2 }}
+        concept={{ text: concept, columnCount: 3 }}
+      ></InfosProject>
+      <InfosProject
+        color={r.project1.color}
         technos={technos}
+        lCode="https://github.com/ludivineConstanti/Pixiji"
+        lWebsite="/"
       ></InfosProject>
     </>
   );

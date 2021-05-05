@@ -19,7 +19,7 @@ const Home = () => {
           My name is Ludivine Constanti, I am a versatile, multilingual, French{" "}
           <STextDeco>Art Director</STextDeco> developer.
         </SText>
-        <ButtonLink text="See projects" path={r.project1}></ButtonLink>
+        <ButtonLink path={r.project1.path}>See projects</ButtonLink>
       </STextContainer>
       <SPParis>
         <Canvas camera={{ fov: 50, near: 0.1, far: 1000, position: [0, 0, 5] }}>

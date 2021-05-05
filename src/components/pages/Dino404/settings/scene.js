@@ -9,8 +9,8 @@ import { borderMargins3 } from "style/g";
 let scene, camera, fieldOfView, aspectRatio, nearPlane, farPlane, renderer;
 
 // need to change it also in handleWindowResize
-let HEIGHT = window.innerHeight - borderMargins3 * 2;
-let WIDTH = window.innerWidth / 2;
+let HEIGHT = window.innerHeight / 2;
+let WIDTH = window.innerWidth - borderMargins3 * 2;
 
 const limitR = 500;
 const limitL = -limitR;
@@ -79,8 +79,8 @@ const createScene = function (container) {
 
 function handleWindowResize() {
   // update height and width of the renderer and the camera
-  HEIGHT = window.innerHeight - borderMargins3 * 2;
-  WIDTH = window.innerWidth / 2;
+  HEIGHT = window.innerHeight / 2;
+  WIDTH = window.innerWidth - borderMargins3 * 2;
   renderer.setSize(WIDTH, HEIGHT);
   camera.aspect = WIDTH / HEIGHT;
   camera.updateProjectionMatrix();

@@ -1,8 +1,9 @@
 import { useRef, useEffect } from "react";
 
 import { init } from "../settings/main.js";
+import { SGame } from "./SGame";
 
-const Dino404 = () => {
+const Game = () => {
   const container = useRef();
 
   useEffect(() => {
@@ -10,14 +11,10 @@ const Dino404 = () => {
   }, []);
 
   return (
-    <canvas
-      ref={container}
-      style={{
-        display: "block",
-        margin: "auto",
-      }}
-    ></canvas>
+    <SGame>
+      <canvas ref={container}></canvas>
+    </SGame>
   );
 };
 
-export default Dino404;
+export default Game;

@@ -23,7 +23,7 @@ export const tTextProject = `
 
 export const tButtonLink = `
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     font-size: 16px;
 `;
 

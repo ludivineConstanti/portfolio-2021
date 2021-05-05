@@ -11,8 +11,10 @@ const Dino404 = () => {
       <Game></Game>
       <InfosProject
         color={r.project2.color}
-        concept={concept}
+        concept={{ text: concept, columnCount: 1 }}
         technos={technos}
+        lCode="https://github.com/ludivineConstanti/Pixiji"
+        lWebsite="/"
       ></InfosProject>
     </>
   );
