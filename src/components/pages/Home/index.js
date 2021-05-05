@@ -4,21 +4,22 @@ import { Canvas } from "@react-three/fiber";
 import PParis from "./PParis";
 import Title from "components/elements/Title";
 import ButtonLink from "components/elements/ButtonLink";
-import { SHome, STextContainer, SText, STextDeco, SPParis } from "./SHome";
+import { STextContainer, SText, STextDeco, SPParis } from "./SHome";
+import { routes as r } from "data/routes";
 
 // fov => higher number = more perspective + more far away
 // default camera values => { fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }
 
 const Home = () => {
   return (
-    <SHome>
+    <>
       <STextContainer>
         <Title>Welcome!</Title>
         <SText>
           My name is Ludivine Constanti, I am a versatile, multilingual, French{" "}
           <STextDeco>Art Director</STextDeco> developer.
         </SText>
-        <ButtonLink text="See projects" path="/pixiji"></ButtonLink>
+        <ButtonLink text="See projects" path={r.project1}></ButtonLink>
       </STextContainer>
       <SPParis>
         <Canvas camera={{ fov: 50, near: 0.1, far: 1000, position: [0, 0, 5] }}>
@@ -30,7 +31,7 @@ const Home = () => {
           </Suspense>
         </Canvas>
       </SPParis>
-    </SHome>
+    </>
   );
 };
 

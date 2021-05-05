@@ -1,6 +1,6 @@
 import { OrbitControls } from "../../../../helpers/OrbitControls";
 
-import { createScene, scene, camera, renderer } from "./scene.js";
+import { createScene, createMats, scene, camera, renderer } from "./scene.js";
 
 import { createDino, dino, jumpDuration, landed } from "../objects/dino.js";
 
@@ -23,6 +23,7 @@ let gameSpeed = 5;
 let boost = 0;
 let score = 0;
 let controls;
+let mats;
 
 // Basic set up for the scene is based on the tutorial from Karim Maaloul
 // https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/
@@ -32,20 +33,24 @@ let controls;
 // let controls;
 
 async function init(container) {
-  // set up the scene, the camera and the renderer
-  createScene(container);
+  mats = await createMats().then((mats) => {
+    // set up the scene, the camera and the renderer
+    createScene(container);
 
-  // add the objects
-  fillFloor();
-  createDino();
-  fillSky();
-  createCloud();
-  fillcactusArr();
-  putObstacleInScene();
+    // add the objects
+    fillFloor(mats);
+    createDino(mats);
+    fillSky(mats);
+    createCloud(mats);
+    fillcactusArr(mats);
+    putObstacleInScene(mats);
+  });
 
   // start a loop that will update the objects' positions
   // and render the scene on each frame
-  loop();
+  // loop();
+  // render the scene
+  renderer.render(scene, camera);
 
   controls = new OrbitControls(camera, renderer.domElement);
   // controls.noPan = true;
@@ -57,7 +62,7 @@ function loop() {
   // controls.update();
 
   updateCloud(gameSpeed / 10);
-  updateFloor(gameSpeed + boost);
+  updateFloor(gameSpeed + boost, mats);
   updateObstacles(gameSpeed + boost);
 
   dinoSpeed += 0.3;
@@ -113,10 +118,8 @@ function loop() {
   //console.log(score);
   //console.log(boost);
 
-  // render the scene
-  renderer.render(scene, camera);
   // call the loop function again
   requestAnimationFrame(loop);
 }
 
-export { dinoSpeed, init };
+export { dinoSpeed, init, renderer };

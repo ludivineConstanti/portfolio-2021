@@ -1,13 +1,6 @@
 import * as THREE from "three";
 
-import {
-  scene,
-  multiMat,
-  Colors,
-  assignColor,
-  limitR,
-  limitL,
-} from "../settings/scene.js";
+import { scene, assignColor, limitR, limitL } from "../settings/scene.js";
 
 import { BufferGeometryUtils } from "helpers/BufferGeometry";
 
@@ -32,6 +25,7 @@ const colliderData = {
 };
 
 function modifyColor(
+  mats,
   modelArr1,
   color1,
   modelArr2,
@@ -59,7 +53,7 @@ function modifyColor(
 
   // Merging cactus
   const mergedVersion = BufferGeometryUtils.mergeBufferGeometries(arr, false);
-  const result = new THREE.Mesh(mergedVersion, multiMat);
+  const result = new THREE.Mesh(mergedVersion, mats.multi);
   if (scale !== 1) {
     result.scale.set(scale, scale, scale);
     result.position.y += (scale - 1) * 50;
@@ -79,12 +73,12 @@ function makeSmallCopy(model, scale) {
   sCactusArr.push(smallCopy);
 }
 
-function fillcactusArr() {
+function fillcactusArr(mats) {
   // radius top, radius bottom, height, radial segments, height segments
   const cactusGeom = new THREE.CylinderBufferGeometry(10, 10, 30, 6, 2);
   modifyRowCylinder(cactusGeom.attributes.position, 7, 6);
   // will give blue as default color to all copies
-  const cactusColor = assignColor(Colors.blue, cactusGeom);
+  const cactusColor = assignColor(mats.Colors.blue, cactusGeom);
   cactusGeom.setAttribute("color", cactusColor);
 
   // 1st cactus *** 1st color ***************************************************
@@ -97,7 +91,7 @@ function fillcactusArr() {
   const cactus1_F_Geom = cactusGeom.clone();
   cactus1_F_Geom.applyMatrix4(new THREE.Matrix4().makeScale(0.5, 0.5, 0.5));
   cactus1_F_Geom.applyMatrix4(new THREE.Matrix4().makeTranslation(0, -11, 0));
-  const cactus1_F_Color = assignColor(Colors.red, cactus1_F_Geom);
+  const cactus1_F_Color = assignColor(mats.Colors.red, cactus1_F_Geom);
   cactus1_F_Geom.setAttribute("color", cactus1_F_Color);
   cactus1Arr.push(cactus1_F_Geom);
 
@@ -106,18 +100,19 @@ function fillcactusArr() {
     cactus1Arr,
     false
   );
-  const cactus1_C1 = new THREE.Mesh(cactus1Merged, multiMat);
+  const cactus1_C1 = new THREE.Mesh(cactus1Merged, mats.multi);
   cactus1_C1.name = "s1";
   cactusArr.push(cactus1_C1);
 
-  // Other colors
+  // Other mats.Colors
   const cactus1_C2 = modifyColor(
+    mats,
     [cactus1Geom],
     0,
     [cactus1_F_Geom],
-    Colors.yellow
+    mats.Colors.yellow
   );
-  /*const cactus1_C3 = modifyColor([cactus1Geom], Colors.yellow, [cactus1_F_Geom], Colors.red);*/
+  /*const cactus1_C3 = modifyColor([cactus1Geom], mats.Colors.yellow, [cactus1_F_Geom], mats.Colors.red);*/
 
   // Small copies
   makeSmallCopy(cactus1_C1, 0.5);
@@ -164,13 +159,14 @@ function fillcactusArr() {
     cactus2Arr,
     false
   );
-  const cactus2_C1 = new THREE.Mesh(cactus2Merged, multiMat);
+  const cactus2_C1 = new THREE.Mesh(cactus2Merged, mats.multi);
   cactus2_C1.name = "s1";
 
   cactusArr.push(cactus2_C1);
 
-  // Other colors
+  // Other mats.Colors
   modifyColor(
+    mats,
     [cactus2Geom, cactus2_B1_Geom, cactus2_B2_Geom],
     0,
     [],
@@ -179,24 +175,27 @@ function fillcactusArr() {
     "s1Six"
   );
   modifyColor(
+    mats,
     [cactus2Geom, cactus2_B1_Geom, cactus2_B2_Geom],
-    Colors.yellow,
+    mats.Colors.yellow,
     [],
     0,
     1.8,
     "s1Eight"
   );
   modifyColor(
+    mats,
     [cactus2Geom, cactus2_B1_Geom, cactus2_B2_Geom],
-    Colors.red,
+    mats.Colors.red,
     [],
     0,
     1.2,
     "s1Two"
   );
   modifyColor(
+    mats,
     [cactus2Geom, cactus2_B1_Geom, cactus2_B2_Geom],
-    Colors.green,
+    mats.Colors.green,
     [],
     0,
     1.4,

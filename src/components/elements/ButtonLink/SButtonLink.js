@@ -10,7 +10,7 @@ export const SButtonLink = styled(NavLink)`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border: ${strokeThickness} solid ${(props) => props.s.color};
+  border: ${strokeThickness}px solid ${(props) => props.s.color};
   padding: 24px;
   border-radius: 80px;
 `;
@@ -18,7 +18,7 @@ export const SButtonLink = styled(NavLink)`
 export const SArrowStroke = styled.div`
   margin-left: 12px;
   background-color: ${(props) => props.s.color};
-  height: ${strokeThickness};
+  height: ${strokeThickness}px;
   width: 24px;
-  border-radius: ${strokeThickness};
+  border-radius: ${strokeThickness}px;
 `;

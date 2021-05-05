@@ -4,15 +4,13 @@ import matcap from "../assets/matCap.jpg";
 import matcapTest from "../assets/try25.png";
 import matcapFloor from "../assets/try25B.png";
 
-let scene,
-  camera,
-  fieldOfView,
-  aspectRatio,
-  nearPlane,
-  farPlane,
-  HEIGHT,
-  WIDTH,
-  renderer;
+import { borderMargins3 } from "style/g";
+
+let scene, camera, fieldOfView, aspectRatio, nearPlane, farPlane, renderer;
+
+// need to change it also in handleWindowResize
+let HEIGHT = window.innerHeight - borderMargins3 * 2;
+let WIDTH = window.innerWidth / 2;
 
 const limitR = 500;
 const limitL = -limitR;
@@ -21,8 +19,6 @@ const createScene = function (container) {
   // Get the width and the height of the screen,
   // use them to set up the aspect ratio of the camera
   // and the size of the renderer.
-  HEIGHT = window.innerHeight;
-  WIDTH = window.innerWidth;
 
   // Create the scene
   scene = new THREE.Scene();
@@ -49,8 +45,10 @@ const createScene = function (container) {
   camera.position.z = 200;
   camera.position.y = 0;
 
-  // Create the renderer
+  // Create the renderer + add the canvas
+  // Need to do it differently if use a div, define afterward
   renderer = new THREE.WebGLRenderer({
+    canvas: container,
     // Allow transparency to show the gradient background
     // we defined in the CSS
     alpha: true,
@@ -74,10 +72,6 @@ const createScene = function (container) {
   // => goodby shadows
   // renderer.shadowMap.enabled = true;
 
-  // Add the DOM element of the renderer to the
-  // container we created in the HTML
-  container.appendChild(renderer.domElement);
-
   // Listen to the screen: if the user resizes it
   // we have to update the camera and the renderer size
   window.addEventListener("resize", handleWindowResize, false);
@@ -85,53 +79,58 @@ const createScene = function (container) {
 
 function handleWindowResize() {
   // update height and width of the renderer and the camera
-  HEIGHT = window.innerHeight;
-  WIDTH = window.innerWidth;
+  HEIGHT = window.innerHeight - borderMargins3 * 2;
+  WIDTH = window.innerWidth / 2;
   renderer.setSize(WIDTH, HEIGHT);
   camera.aspect = WIDTH / HEIGHT;
   camera.updateProjectionMatrix();
+  renderer.render(scene, camera);
 }
 
 // MATERIALS ************************************************************************
 
-const Colors = {
-  red: new THREE.Color(0xef4239).convertSRGBToLinear(),
-  blue: new THREE.Color(0x4284f7).convertSRGBToLinear(),
-  green: new THREE.Color(0x31ab52).convertSRGBToLinear(),
-  yellow: new THREE.Color(0xffbd08).convertSRGBToLinear(),
-  white: new THREE.Color(0xffffff).convertSRGBToLinear(),
-};
+async function createMats() {
+  const Colors = {
+    red: new THREE.Color(0xef4239).convertSRGBToLinear(),
+    blue: new THREE.Color(0x4284f7).convertSRGBToLinear(),
+    green: new THREE.Color(0x31ab52).convertSRGBToLinear(),
+    yellow: new THREE.Color(0xffbd08).convertSRGBToLinear(),
+    white: new THREE.Color(0xffffff).convertSRGBToLinear(),
+  };
 
-const tMatcap = new THREE.TextureLoader().load(matcap);
-const tMatcapTest = new THREE.TextureLoader().load(matcapTest);
-const tMatcapFloor = new THREE.TextureLoader().load(matcapFloor);
+  const tMatcap = new THREE.TextureLoader().load(matcap);
+  const tMatcapTest = new THREE.TextureLoader().load(matcapTest);
+  const tMatcapFloor = new THREE.TextureLoader().load(matcapFloor);
 
-// The Mesh Phong Material can reflect the light, unlike the Mesh Lambert material
-// It's less accurate than Mesh Standard Material or Mesh Physical Material
-// but performance will be better
-const redMat = new THREE.MeshMatcapMaterial({
-  color: Colors.red,
-  flatShading: true,
-  matcap: tMatcapTest,
-});
+  // The Mesh Phong Material can reflect the light, unlike the Mesh Lambert material
+  // It's less accurate than Mesh Standard Material or Mesh Physical Material
+  // but performance will be better
+  const red = new THREE.MeshMatcapMaterial({
+    color: Colors.red,
+    flatShading: true,
+    matcap: tMatcapTest,
+  });
 
-const whiteMat = new THREE.MeshMatcapMaterial({
-  color: Colors.white,
-  flatShading: true,
-  matcap: tMatcap,
-});
+  const white = new THREE.MeshMatcapMaterial({
+    color: Colors.white,
+    flatShading: true,
+    matcap: tMatcap,
+  });
 
-const whiteMatFloor = new THREE.MeshMatcapMaterial({
-  color: Colors.white,
-  flatShading: true,
-  matcap: tMatcapFloor,
-});
+  const whiteFloor = new THREE.MeshMatcapMaterial({
+    color: Colors.white,
+    flatShading: true,
+    matcap: tMatcapFloor,
+  });
 
-const multiMat = new THREE.MeshMatcapMaterial({
-  vertexColors: true,
-  shading: THREE.FlatShading,
-  matcap: tMatcap,
-});
+  const multi = new THREE.MeshMatcapMaterial({
+    vertexColors: true,
+    shading: THREE.FlatShading,
+    matcap: tMatcap,
+  });
+
+  return { Colors, red, white, whiteFloor, multi };
+}
 
 function assignColor(color, geom) {
   // ref => https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects.html
@@ -155,14 +154,10 @@ function assignColor(color, geom) {
 
 export {
   createScene,
+  createMats,
   scene,
   camera,
   renderer,
-  redMat,
-  whiteMat,
-  whiteMatFloor,
-  multiMat,
-  Colors,
   assignColor,
   limitR,
   limitL,

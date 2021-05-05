@@ -1,17 +1,19 @@
-import { useRef, useEffect } from "react";
-
-import { init } from "./settings/main.js";
 import Title from "components/elements/Title";
+import Game from "./Game";
+import InfosProject from "components/elements/InfosProject";
+import { routes as r } from "data/routes";
+import { concept, technos } from "./text";
 
 const Dino404 = () => {
-  const container = useRef();
-  useEffect(() => {
-    init(container.current);
-  }, []);
   return (
     <>
-      <Title color="#4285F4">Dino 404</Title>
-      <div ref={container} style={{ height: "100vh" }}></div>
+      <Title useCase="top">Dino 404</Title>
+      <Game></Game>
+      <InfosProject
+        color={r.project2.color}
+        concept={concept}
+        technos={technos}
+      ></InfosProject>
     </>
   );
 };

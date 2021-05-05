@@ -3,13 +3,6 @@ import styled from "styled-components";
 import { borderMargins } from "style/g";
 import { tText } from "style/typo";
 
-export const SHome = styled.div`
-  position: fixed;
-  background-color: #0e184f;
-  height: 100vh;
-  width: 100vw;
-`;
-
 export const SText = styled.p`
   ${tText}
   display: block;
@@ -29,7 +22,8 @@ export const STextContainer = styled.main`
   width: 25vw;
   text-align: left;
   right: calc(
-    ((50vw - ${borderMargins} - ${textContainerWidth}) / 2) + ${borderMargins}
+    ((50vw - ${borderMargins}px - ${textContainerWidth}) / 2) +
+      ${borderMargins}px
   );
   top: 50%;
   transform: translateY(-50%);

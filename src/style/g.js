@@ -1,8 +1,10 @@
-export const strokeThickness = "4px";
+export const sMenuIcon = 72;
+export const strokeThickness = 4;
 
-export const borderMargins = "80px";
+export const borderMargins = 80;
+export const borderMargins3 = borderMargins * 2 + sMenuIcon;
+export const columnGap = 64;
 
 export const zIMenuIcon = 3;
 export const zIMenu = 2;
-
-export const sMenuIcon = "72px";
+export const zIBackground = -1;

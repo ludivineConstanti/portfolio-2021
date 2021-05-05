@@ -3,7 +3,7 @@ import Title from "components/elements/Title";
 const Blockchain = () => {
   return (
     <>
-      <Title>An Intro to Blockchain</Title>
+      <Title useCase="top">An Intro to Blockchain</Title>
     </>
   );
 };

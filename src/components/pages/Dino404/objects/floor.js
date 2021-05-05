@@ -1,12 +1,6 @@
 import * as THREE from "three";
 
-import {
-  scene,
-  whiteMatFloor,
-  multiMat,
-  Colors,
-  assignColor,
-} from "../settings/scene.js";
+import { scene, assignColor } from "../settings/scene.js";
 
 import { BufferGeometryUtils } from "helpers/BufferGeometry";
 
@@ -25,7 +19,7 @@ const floorDepth = 400;
 // is important for performance, augment the number of triangles by a lot
 const numFloorInScene = 3;
 
-function createCactus() {
+function createCactus(mats) {
   for (let i = 0; i < 4; i++) {
     const d = Math.random() * 30;
     const posX = i * 70 + d;
@@ -44,7 +38,7 @@ function createCactus() {
     cactusGeom.applyMatrix4(
       new THREE.Matrix4().makeTranslation(posX, 200, cactusY)
     );
-    const cactusColor = assignColor(Colors.blue, cactusGeom);
+    const cactusColor = assignColor(mats.Colors.blue, cactusGeom);
     cactusGeom.setAttribute("color", cactusColor);
     geomArr.push(cactusGeom);
 
@@ -65,7 +59,7 @@ function createCactus() {
       branchRGeom.applyMatrix4(
         new THREE.Matrix4().makeTranslation(branchRX, 200, branchRY)
       );
-      const branchRColor = assignColor(Colors.blue, branchRGeom);
+      const branchRColor = assignColor(mats.Colors.blue, branchRGeom);
       branchRGeom.setAttribute("color", branchRColor);
       geomArr.push(branchRGeom);
 
@@ -81,7 +75,7 @@ function createCactus() {
       branchRSGeom.applyMatrix4(
         new THREE.Matrix4().makeTranslation(branchRSX, 200, branchRSY)
       );
-      const branchRSColor = assignColor(Colors.blue, cactusGeom);
+      const branchRSColor = assignColor(mats.Colors.blue, cactusGeom);
       branchRSGeom.setAttribute("color", branchRSColor);
       geomArr.push(branchRSGeom);
     }
@@ -105,7 +99,7 @@ function createCactus() {
       branchLGeom.applyMatrix4(
         new THREE.Matrix4().makeTranslation(branchLX, 200, branchLY)
       );
-      const branchLColor = assignColor(Colors.blue, branchLGeom);
+      const branchLColor = assignColor(mats.Colors.blue, branchLGeom);
       branchLGeom.setAttribute("color", branchLColor);
       geomArr.push(branchLGeom);
 
@@ -121,15 +115,15 @@ function createCactus() {
       branchLSGeom.applyMatrix4(
         new THREE.Matrix4().makeTranslation(branchLSX, 200, branchLSY)
       );
-      const branchLSColor = assignColor(Colors.blue, cactusGeom);
+      const branchLSColor = assignColor(mats.Colors.blue, cactusGeom);
       branchLSGeom.setAttribute("color", branchLSColor);
       geomArr.push(branchLSGeom);
     }
   }
 }
 
-function createFloor() {
-  createCactus();
+function createFloor(mats) {
+  createCactus(mats);
 
   // example on how to distort a plane
   // https://jsfiddle.net/h4oytk1a/1/
@@ -260,11 +254,11 @@ function createFloor() {
       stoneGeom.applyMatrix4(new THREE.Matrix4().makeTranslation(x, y, z));
       // console.log("position 2;", stoneGeom.getAttribute("position"));
       if (stoneColor < 0.7) {
-        stoneColor = Colors.yellow;
+        stoneColor = mats.Colors.yellow;
       } else if (stoneColor < 0.8) {
-        stoneColor = Colors.blue;
+        stoneColor = mats.Colors.blue;
       } else {
-        stoneColor = Colors.green;
+        stoneColor = mats.Colors.green;
       }
 
       const colorAttrib = assignColor(stoneColor, stoneGeom);
@@ -278,30 +272,30 @@ function createFloor() {
     geomArr,
     false
   );
-  const mesh = new THREE.Mesh(mergedGeometry, multiMat);
+  const mesh = new THREE.Mesh(mergedGeometry, mats.multi);
 
   // I use a different material for the floor, since I find it too greyish
   // and since I think the lighting is not too bad, it's an easy fix
-  const floor = new THREE.Mesh(geomFloor, whiteMatFloor);
+  const floor = new THREE.Mesh(geomFloor, mats.whiteFloor);
 
   floor.add(mesh);
   return floor;
 }
 
-function getFloor() {
+function getFloor(mats) {
   if (invisibleFloor.length) {
     // console.log("invisible floor");
     return invisibleFloor.pop();
   } else {
     // console.log("create floor");
-    return createFloor();
+    return createFloor(mats);
   }
 }
 
-function putFloorInScene(posX = 600) {
+function putFloorInScene(posX = 600, mats) {
   let floor;
   if (visibleFloor.length === 0) {
-    floor = getFloor();
+    floor = getFloor(mats);
   } else {
     floor = visibleFloor[0].clone();
   }
@@ -312,15 +306,15 @@ function putFloorInScene(posX = 600) {
   scene.add(floor);
 }
 
-function fillFloor() {
+function fillFloor(mats) {
   let posX = limitFloorLeft;
   for (let i = 0; i < numFloorInScene; i++) {
-    putFloorInScene(posX);
+    putFloorInScene(posX, mats);
     posX += floorWidth;
   }
 }
 
-function updateFloor(speed) {
+function updateFloor(speed, mats) {
   for (let i = 0; i < visibleFloor.length; i++) {
     const floor = visibleFloor[i];
     floor.position.x -= speed;
@@ -329,7 +323,10 @@ function updateFloor(speed) {
       scene.remove(floor);
       // recycle the particle
       invisibleFloor.push(visibleFloor.splice(i, 1)[0]);
-      putFloorInScene(limitFloorLeft + floorWidth * (numFloorInScene - 1));
+      putFloorInScene(
+        limitFloorLeft + floorWidth * (numFloorInScene - 1),
+        mats
+      );
       i--;
     }
   }

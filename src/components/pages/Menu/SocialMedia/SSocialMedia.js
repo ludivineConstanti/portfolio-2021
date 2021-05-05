@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { strokeThickness } from "style/g";
 
 export const SSocialMedia = styled.a`
-  border: ${strokeThickness} solid white;
+  border: ${strokeThickness}px solid white;
   height: 40px;
   width: 40px;
   display: block;

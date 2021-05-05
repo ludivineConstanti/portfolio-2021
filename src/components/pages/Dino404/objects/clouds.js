@@ -1,13 +1,6 @@
 import * as THREE from "three";
 
-import {
-  scene,
-  multiMat,
-  Colors,
-  assignColor,
-  limitR,
-  limitL,
-} from "../settings/scene.js";
+import { scene, assignColor, limitR, limitL } from "../settings/scene.js";
 
 import { BufferGeometryUtils } from "../../../../helpers/BufferGeometry";
 
@@ -15,7 +8,7 @@ let visibleClouds = [];
 let invisibleClouds = [];
 let cloud;
 
-function createCloud() {
+function createCloud(mats) {
   // Create an empty container that will hold the different parts of the cloud
   const cloudArr = [];
 
@@ -36,7 +29,7 @@ function createCloud() {
       )
     );
 
-    const colorCloud = assignColor(Colors.white, geomCloud);
+    const colorCloud = assignColor(mats.Colors.white, geomCloud);
     geomCloud.setAttribute("color", colorCloud);
     // add the cube to the container we first created
     cloudArr.push(geomCloud);
@@ -45,7 +38,7 @@ function createCloud() {
     cloudArr,
     false
   );
-  cloud = new THREE.Mesh(mergedCloud, multiMat);
+  cloud = new THREE.Mesh(mergedCloud, mats.multi);
 }
 
 function getCloud() {
@@ -74,8 +67,8 @@ function putCloudInSky(posX) {
   scene.add(cloud);
 }
 
-function fillSky() {
-  createCloud();
+function fillSky(mats) {
+  createCloud(mats);
   for (let i = 0; i < 10; i++) {
     // second value needs to be the double of second one
     // - a => limit of x to the left

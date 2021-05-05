@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import { zIMenu, borderMargins, sMenuIcon } from "style/g";
 
-export const SMenu = styled.div`
+export const SMenuContent = styled.div`
   z-index: ${zIMenu};
   position: fixed;
   height: 100vh;
@@ -20,9 +20,9 @@ export const SLinksContainer = styled.nav`
 
 export const SSMContainer = styled.nav`
   position: fixed;
-  right: ${borderMargins};
-  top: ${borderMargins};
+  right: ${borderMargins}px;
+  top: ${borderMargins}px;
   display: flex;
   align-items: center;
-  height: ${sMenuIcon};
+  height: ${sMenuIcon}px;
 `;

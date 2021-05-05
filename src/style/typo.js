@@ -3,11 +3,22 @@ export const tTitle = `
     font-family: utopia-std-headline;
 `;
 
+export const tSubtitle = `
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 34px;
+`;
+
 export const tText = `
-    font-family: 'Questrial', sans-serif;
     letter-spacing: 3px;
     font-size: 16px;
     line-height: 20px;
+`;
+
+export const tTextProject = `
+    letter-spacing: 1px;
+    font-size: 16px;
+    line-height: 17px;
 `;
 
 export const tButtonLink = `
@@ -17,7 +28,7 @@ export const tButtonLink = `
 `;
 
 export const tMenuLink = `
-    font-size: 48px;
     font-family: utopia-std-headline;
+    font-size: 48px;
     line-height: 64px;
 `;

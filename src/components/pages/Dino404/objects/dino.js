@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { scene, redMat, whiteMat } from "../settings/scene.js";
+import { scene } from "../settings/scene.js";
 
 import { dinoSpeed } from "../settings/main.js";
 
@@ -77,7 +77,7 @@ function updateVertices(arrVertices, val = { x: 0, y: 0, z: 0 }, geom) {
   }
 }
 
-function Dino() {
+function Dino(mats) {
   this.mesh = new THREE.Object3D();
 
   // radius top, radius bottom, height, number of faces on the side, number of faces vertically
@@ -124,7 +124,7 @@ function Dino() {
   // Back left
   updateVertices([18, 44], { x: -2, y: 4, z: -2 }, bodyGeom);
 
-  this.body = new THREE.Mesh(bodyGeom, redMat);
+  this.body = new THREE.Mesh(bodyGeom, mats.red);
   bodyGeom.applyMatrix(
     new THREE.Matrix4().makeTranslation(0, bodyYTranslate, 0)
   );
@@ -134,13 +134,13 @@ function Dino() {
   const armGeom = new THREE.BoxBufferGeometry(7, 3, 3);
   // modify the arm's origin
   armGeom.applyMatrix(new THREE.Matrix4().makeTranslation(armXTranslate, 0, 0));
-  this.armR = new THREE.Mesh(armGeom, redMat);
+  this.armR = new THREE.Mesh(armGeom, mats.red);
   // modify the arm's position
   this.armR.position.set(armRX, armRY, 9.5);
   this.body.add(this.armR);
 
   const handGeom = new THREE.BoxBufferGeometry(3, 3, 3);
-  this.hand = new THREE.Mesh(handGeom, redMat);
+  this.hand = new THREE.Mesh(handGeom, mats.red);
   this.hand.position.set(handX, -1.5, 0);
   this.armR.add(this.hand);
 
@@ -174,7 +174,7 @@ function Dino() {
   // Back Left
   updateVertices([10, 18, 31], { x: 2, y: 0, z: 0 }, legGeom);
 
-  this.legR = new THREE.Mesh(legGeom, redMat);
+  this.legR = new THREE.Mesh(legGeom, mats.red);
   this.legR.position.set(legRX, legRY, 10);
   this.body.add(this.legR);
 
@@ -183,7 +183,7 @@ function Dino() {
   footGeom.applyMatrix(
     new THREE.Matrix4().makeTranslation(footXTranslate, footYTranslate, 0)
   );
-  this.foot = new THREE.Mesh(footGeom, redMat);
+  this.foot = new THREE.Mesh(footGeom, mats.red);
   // modify foot's final position
   this.foot.position.set(footX, footY, -1);
   this.legR.add(this.foot);
@@ -225,7 +225,7 @@ function Dino() {
 
   // tail is rotated, so modify x for global y
   // and y for global x
-  this.tail1 = new THREE.Mesh(tailGeom, redMat);
+  this.tail1 = new THREE.Mesh(tailGeom, mats.red);
   this.tail1.position.set(0, tail1Y, 0);
 
   this.tail.add(this.tail1);
@@ -251,12 +251,12 @@ function Dino() {
   );
   // To create an object in Three.js, we have to create a mesh
   // which is a combination of a geometry and some material
-  this.head = new THREE.Mesh(headGeom, redMat);
+  this.head = new THREE.Mesh(headGeom, mats.red);
   this.head.position.set(headX, headY, 0);
   this.body.add(this.head);
 
   const eyeGeom = new THREE.BoxBufferGeometry(5, 5, 5);
-  this.eyeR = new THREE.Mesh(eyeGeom, whiteMat);
+  this.eyeR = new THREE.Mesh(eyeGeom, mats.white);
   this.eyeL = this.eyeR.clone();
   // 1:X 2:Y 3:Z
   // X => negative values to the left, positive values to the right
@@ -280,16 +280,16 @@ function Dino() {
   updateVertices(3, { x: -3, y: 0, z: 3 }, mouthGeom);
   updateVertices(6, { x: 0, y: 0, z: 3 }, mouthGeom);
 
-  this.mouth = new THREE.Mesh(mouthGeom, redMat);
+  this.mouth = new THREE.Mesh(mouthGeom, mats.red);
   // Y => negative values to the bottom, positive values to the top
   this.mouth.position.set(mouthX, mouthY, 0);
   this.head.add(this.mouth);
 }
 
-const createDino = function () {
+const createDino = function (mats) {
   // name of the instance = new instance of the function
   // the variable of the instance needs to be declared somewhere in the global scope
-  dino = new Dino();
+  dino = new Dino(mats);
   dino.mesh.position.x = dinoPosX;
   // Need to put name of the object (or of the "container") we want to render
   scene.add(dino.mesh);
