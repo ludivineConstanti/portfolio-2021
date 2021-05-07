@@ -260,7 +260,7 @@ function animateObstacles(animatedArr, recycledArr, speed) {
       cactusX < colliderData[cactus.name].xR * tolerance + dinoX &&
       dinoY < colliderData[cactus.name].y * tolerance
     ) {
-      console.log("**************TOUCHING**************");
+      // console.log("**************TOUCHING**************");
     }
 
     if (cactus.position.x < limitL) {

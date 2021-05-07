@@ -66,12 +66,6 @@ const createScene = function (container) {
   // it will fill the entire screen
   renderer.setSize(WIDTH, HEIGHT);
 
-  // Enable shadow rendering
-  // I decided to prioritize performance over shadows
-  // and since I'm struggling to get a good frame rate
-  // => goodby shadows
-  // renderer.shadowMap.enabled = true;
-
   // Listen to the screen: if the user resizes it
   // we have to update the camera and the renderer size
   window.addEventListener("resize", handleWindowResize, false);
@@ -89,7 +83,7 @@ function handleWindowResize() {
 
 // MATERIALS ************************************************************************
 
-async function createMats() {
+function createMats() {
   const Colors = {
     red: new THREE.Color(0xef4239).convertSRGBToLinear(),
     blue: new THREE.Color(0x4284f7).convertSRGBToLinear(),
@@ -125,9 +119,15 @@ async function createMats() {
 
   const multi = new THREE.MeshMatcapMaterial({
     vertexColors: true,
-    shading: THREE.FlatShading,
+    flatShading: true,
     matcap: tMatcap,
   });
+
+  const tempMat = { Colors, red, white, whiteFloor, multi };
+  console.log(tempMat == { Colors, red, white, whiteFloor, multi });
+  setTimeout(() => {
+    console.log(tempMat == { Colors, red, white, whiteFloor, multi });
+  }, 2000);
 
   return { Colors, red, white, whiteFloor, multi };
 }

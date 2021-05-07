@@ -4,9 +4,11 @@ import { SSocialMedia } from "./SSocialMedia";
 
 const MenuLink = ({ href, children }) => {
   return (
-    <SSocialMedia href={href} target="_blank" referrerpolicy="no-referrer">
-      {children}
-    </SSocialMedia>
+    <li>
+      <SSocialMedia href={href} target="_blank" referrerpolicy="no-referrer">
+        {children}
+      </SSocialMedia>
+    </li>
   );
 };
 

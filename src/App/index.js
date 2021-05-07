@@ -14,7 +14,7 @@ const App = () => {
   const [color, setColor] = useState("#0e184f");
 
   const location = useLocation();
-  console.log(location.pathname);
+
   useEffect(() => {
     let colorTemp = "#0e184f";
     rKeys.forEach((key) => {

@@ -1,51 +1,71 @@
 import PropTypes from "prop-types";
 
-import { SInfosProject, SLinks } from "./SInfosProject";
+import { SInfosProject, SContainer } from "./SInfosProject";
 import Concept from "./Concept";
 import Technos from "./Technos";
-import ButtonLink from "components/elements/ButtonLink";
-import { columnWidth } from "style/g";
+import Links from "./Links";
 
-const InfosProject = ({ concept, technos, color, lCode, lWebsite }) => {
+const InfosProject = ({
+  concept,
+  technos,
+  color,
+  backgroundColor,
+  links,
+  extraHeight,
+}) => {
   return (
-    <SInfosProject s={{ color }}>
+    <SInfosProject s={{ color, backgroundColor, extraHeight }}>
       {concept && (
-        <Concept
-          text={concept.text}
-          columnCount={concept.columnCount}
-        ></Concept>
+        <SContainer
+          s={{
+            cStart: concept.grid.cStart,
+            cSpan: concept.grid.cSpan,
+            rStart: concept.grid.rStart,
+            rSpan: concept.grid.rSpan,
+          }}
+        >
+          <Concept text={concept.text} span={concept.grid.cSpan}></Concept>
+        </SContainer>
       )}
-      {technos && <Technos arrText={technos}></Technos>}
-      <SLinks>
-        {lCode && (
-          <ButtonLink path="" external color={color} useCase="project">
-            See code on Github
-          </ButtonLink>
-        )}
-        {lWebsite && (
-          <ButtonLink path="" external color={color} useCase="project">
-            See website
-          </ButtonLink>
-        )}
-      </SLinks>
+      {technos && (
+        <SContainer
+          s={{
+            cStart: technos.grid.cStart,
+            cSpan: technos.grid.cSpan,
+            rStart: technos.grid.rStart,
+            rSpan: technos.grid.rSpan,
+          }}
+        >
+          <Technos
+            arrText={technos.text}
+            color={color}
+            cSpan={technos.grid.cSpan}
+          ></Technos>
+        </SContainer>
+      )}
+      {links && (
+        <Links color={color} data={links.data} grid={links.grid}></Links>
+      )}
     </SInfosProject>
   );
 };
 
 InfosProject.propTypes = {
   concept: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  technos: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  lCode: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  lWebsite: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  technos: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  links: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  extraHeight: PropTypes.string,
   color: PropTypes.string,
+  backgroundColor: PropTypes.string,
 };
 
 InfosProject.defaultProps = {
   concept: false,
   technos: false,
-  lCode: false,
-  lWebsite: false,
+  links: false,
+  extraHeight: "0px",
   color: "#FFF",
+  backgroundColor: "#FFF",
 };
 
 export default InfosProject;

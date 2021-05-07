@@ -1,6 +1,6 @@
 import { OrbitControls } from "../../../../helpers/OrbitControls";
 
-import { createScene, createMats, scene, camera, renderer } from "./scene.js";
+import { createScene, scene, camera, renderer } from "./scene.js";
 
 import { createDino, dino, jumpDuration, landed } from "../objects/dino.js";
 
@@ -32,20 +32,17 @@ let mats;
 
 // let controls;
 
-async function init(container) {
-  mats = await createMats().then((mats) => {
-    // set up the scene, the camera and the renderer
-    createScene(container);
+async function init(container, mats) {
+  // set up the scene, the camera and the renderer
+  createScene(container);
 
-    // add the objects
-    fillFloor(mats);
-    createDino(mats);
-    fillSky(mats);
-    createCloud(mats);
-    fillcactusArr(mats);
-    putObstacleInScene(mats);
-  });
-
+  // add the objects
+  fillFloor(mats);
+  createDino(mats);
+  fillSky(mats);
+  createCloud(mats);
+  fillcactusArr(mats);
+  putObstacleInScene(mats);
   // start a loop that will update the objects' positions
   // and render the scene on each frame
   // loop();
@@ -98,7 +95,9 @@ function loop() {
     dino.land();
   }
   window.addEventListener("keydown", (e) => {
+    console.log(e.key);
     if (e.key === "ArrowUp" || e.key === " ") {
+      e.preventDefault();
       isJumping = true;
     }
   });
@@ -119,7 +118,8 @@ function loop() {
   //console.log(boost);
 
   // call the loop function again
+  renderer.render(scene, camera);
   requestAnimationFrame(loop);
 }
 
-export { dinoSpeed, init, renderer };
+export { dinoSpeed, init, renderer, loop };

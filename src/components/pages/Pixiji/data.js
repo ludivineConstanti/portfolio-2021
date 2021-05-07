@@ -1,3 +1,5 @@
+export const projectNumber = 1;
+
 export const concept = (
   <>
     I started learning Japanese when I was 17 ( I also worked as a design intern
@@ -9,7 +11,10 @@ export const concept = (
     their pronunciation and their translation if you put your cursor over them.
     I modified the UX a bit to make it easier to look at, as a portfolio project
     (there’s a cheating mode, activated by default, which shows the quiz’s
-    answers). If you want to learn more, you can look at the project, on Github.
+    answers). <br />
+    <br />
+    You can find more informations, with the code, in the github repository of
+    this project.
   </>
 );
 

@@ -10,7 +10,7 @@ export const SMenuContent = styled.div`
   background-color: #00404e;
 `;
 
-export const SLinksContainer = styled.nav`
+export const SLinksContainer = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,7 +18,7 @@ export const SLinksContainer = styled.nav`
   height: 100vh;
 `;
 
-export const SSMContainer = styled.nav`
+export const SSMContainer = styled.ul`
   position: fixed;
   right: ${borderMargins}px;
   top: ${borderMargins}px;

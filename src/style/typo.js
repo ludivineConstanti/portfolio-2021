@@ -1,5 +1,5 @@
 export const tTitle = `
-    font-size: 5vw;
+    font-size: 80px;
     font-family: utopia-std-headline;
 `;
 

@@ -3,19 +3,19 @@ import PropTypes from "prop-types";
 import { SNavLink, SExternalLink } from "./SButtonLink";
 import Arrow from "./Arrow";
 
-const ButtonLink = ({ children, path, external, color, useCase }) => {
+const ButtonLink = ({ children, path, external, color, marginBottom }) => {
   return external ? (
     <SExternalLink
       href={path}
       target="_blank"
       rel="noreferrer"
-      s={{ color, useCase }}
+      s={{ color, marginBottom }}
     >
       {children}
       <Arrow color={color}></Arrow>
     </SExternalLink>
   ) : (
-    <SNavLink to={path} s={{ color, useCase }}>
+    <SNavLink to={path} s={{ color, marginBottom }}>
       {children}
       <Arrow color={color}></Arrow>
     </SNavLink>
@@ -24,13 +24,13 @@ const ButtonLink = ({ children, path, external, color, useCase }) => {
 
 ButtonLink.propTypes = {
   path: PropTypes.string.isRequired,
-  useCase: PropTypes.string,
+  marginBottom: PropTypes.string,
   external: PropTypes.bool,
   color: PropTypes.string,
 };
 
 ButtonLink.defaultProps = {
-  useCase: false,
+  marginBottom: "0px",
   external: false,
   color: "#FFF",
 };

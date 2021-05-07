@@ -82,7 +82,6 @@ function Dino(mats) {
 
   // radius top, radius bottom, height, number of faces on the side, number of faces vertically
   const bodyGeom = new THREE.CylinderBufferGeometry(7, 7, 28, 6, 2);
-  console.log(bodyGeom.attributes.position.length);
 
   // TOP Front
   // buffer geometry doesn't automatically update all vertices that should be grouped together
@@ -125,7 +124,7 @@ function Dino(mats) {
   updateVertices([18, 44], { x: -2, y: 4, z: -2 }, bodyGeom);
 
   this.body = new THREE.Mesh(bodyGeom, mats.red);
-  bodyGeom.applyMatrix(
+  bodyGeom.applyMatrix4(
     new THREE.Matrix4().makeTranslation(0, bodyYTranslate, 0)
   );
   this.body.position.set(-5, bodyY, 0);
@@ -133,7 +132,9 @@ function Dino(mats) {
 
   const armGeom = new THREE.BoxBufferGeometry(7, 3, 3);
   // modify the arm's origin
-  armGeom.applyMatrix(new THREE.Matrix4().makeTranslation(armXTranslate, 0, 0));
+  armGeom.applyMatrix4(
+    new THREE.Matrix4().makeTranslation(armXTranslate, 0, 0)
+  );
   this.armR = new THREE.Mesh(armGeom, mats.red);
   // modify the arm's position
   this.armR.position.set(armRX, armRY, 9.5);
@@ -145,12 +146,12 @@ function Dino(mats) {
   this.armR.add(this.hand);
 
   this.armL = this.armR.clone();
-  this.armL.applyMatrix(new THREE.Matrix4().makeScale(1, 1, -1));
+  this.armL.applyMatrix4(new THREE.Matrix4().makeScale(1, 1, -1));
   this.body.add(this.armL);
 
   // width, height, depth, width segments, height segments
   const legGeom = new THREE.BoxBufferGeometry(13, 14, 8, 1, 2);
-  legGeom.applyMatrix(
+  legGeom.applyMatrix4(
     new THREE.Matrix4().makeTranslation(legXTranslate, legYTranslate, 0)
   );
 
@@ -180,7 +181,7 @@ function Dino(mats) {
 
   const footGeom = new THREE.BoxBufferGeometry(10, 3.5, 5);
   // modify foot's origin
-  footGeom.applyMatrix(
+  footGeom.applyMatrix4(
     new THREE.Matrix4().makeTranslation(footXTranslate, footYTranslate, 0)
   );
   this.foot = new THREE.Mesh(footGeom, mats.red);
@@ -203,7 +204,7 @@ function Dino(mats) {
   this.body.add(this.tail);
 
   const tailGeom = new THREE.BoxBufferGeometry(13, 12, 12);
-  tailGeom.applyMatrix(
+  tailGeom.applyMatrix4(
     new THREE.Matrix4().makeTranslation(0, tailYTranslate, 0)
   );
   // TOP Front right
@@ -246,7 +247,7 @@ function Dino(mats) {
   // ref => https://discoverthreejs.com/tips-and-tricks/
   const headGeom = new THREE.BoxBufferGeometry(30, 20, 20);
   // modify the arm's origin
-  headGeom.applyMatrix(
+  headGeom.applyMatrix4(
     new THREE.Matrix4().makeTranslation(headXTranslate, headYTranslate, 0)
   );
   // To create an object in Three.js, we have to create a mesh
@@ -268,7 +269,7 @@ function Dino(mats) {
 
   // Can not access the vertices if ues BufferGeometry
   const mouthGeom = new THREE.BoxBufferGeometry(14, 3, 14);
-  mouthGeom.applyMatrix(
+  mouthGeom.applyMatrix4(
     new THREE.Matrix4().makeTranslation(mouthXTranslate, 0, 0)
   );
 

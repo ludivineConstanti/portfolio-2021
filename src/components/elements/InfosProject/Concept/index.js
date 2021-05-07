@@ -1,20 +1,20 @@
 import PropTypes from "prop-types";
 
-import { SConcept, SText } from "./SConcept";
+import { SText } from "./SConcept";
 import TitleInfos from "components/elements/TitleInfos";
 
-const Concept = ({ text, columnCount }) => {
+const Concept = ({ text, span }) => {
   return (
-    <SConcept s={{ columnCount }}>
+    <>
       <TitleInfos>Concept</TitleInfos>
-      <SText s={{ columnCount }}>{text}</SText>
-    </SConcept>
+      <SText s={{ span }}>{text}</SText>
+    </>
   );
 };
 
 Concept.propTypes = {
-  text: PropTypes.string.isRequired,
-  columnCount: PropTypes.number,
+  text: PropTypes.object.isRequired,
+  span: PropTypes.number,
 };
 
 Concept.defaultProps = {

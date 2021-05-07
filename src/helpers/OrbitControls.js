@@ -156,7 +156,7 @@ let OrbitControls = function (object, domElement) {
       object.up,
       new Vector3(0, 1, 0)
     );
-    let quatInverse = quat.clone().inverse();
+    let quatInverse = quat.clone().invert();
 
     let lastPosition = new Vector3();
     let lastQuaternion = new Quaternion();

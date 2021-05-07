@@ -106,11 +106,11 @@ let BufferGeometryUtils = {
 
     let groups = geometry.groups;
 
-    if (groups.length === 0) {
+    if (groups.count === 0) {
       groups = [
         {
           start: 0,
-          count: indices.length,
+          count: indices.count,
         },
       ];
     }

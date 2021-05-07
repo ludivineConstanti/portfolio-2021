@@ -4,15 +4,17 @@ import { SMenuLink } from "./SMenuLink";
 
 const MenuLink = ({ text, to, setIsOpen }) => {
   return (
-    <SMenuLink
-      exact
-      to={to}
-      onClick={() => {
-        setIsOpen(false);
-      }}
-    >
-      {text}
-    </SMenuLink>
+    <li>
+      <SMenuLink
+        exact
+        to={to}
+        onClick={() => {
+          setIsOpen(false);
+        }}
+      >
+        {text}
+      </SMenuLink>
+    </li>
   );
 };
 

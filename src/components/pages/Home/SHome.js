@@ -28,11 +28,3 @@ export const STextContainer = styled.main`
   top: 50%;
   transform: translateY(-50%);
 `;
-
-export const SPParis = styled.div`
-  position: fixed;
-  bottom: -100vh;
-  left: -25vw;
-  height: 200vh;
-  width: 200vh;
-`;
