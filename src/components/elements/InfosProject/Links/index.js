@@ -26,6 +26,7 @@ const Links = ({ grid, data, color }) => {
               marginBottom={
                 link.marginBottom ? `${strokeThickness / 2}px` : "0px"
               }
+              direction={link.direction}
             >
               {useCases[link.useCase].text}
             </ButtonLink>
@@ -49,6 +50,7 @@ const Links = ({ grid, data, color }) => {
               marginBottom={
                 link.marginBottom ? `${strokeThickness / 2}px` : "0px"
               }
+              direction={link.direction}
             >
               {useCases[link.useCase].text}
             </ButtonLink>

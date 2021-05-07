@@ -7,17 +7,19 @@ import { tButtonLink } from "style/typo";
 const link = `
   ${tButtonLink}
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   padding: 24px;
   height: 8px;
   border-radius: 80px;
+  justify-content: flex-end;
 `;
 
 export const SNavLink = styled(NavLink)`
   ${link}
   color: ${(props) => props.s.color};
   border: ${strokeThickness}px solid ${(props) => props.s.color};
+  flex-direction: ${(props) =>
+    props.s.direction === "right" ? "row" : "row-reverse"};
 `;
 
 export const SExternalLink = styled.a`
@@ -25,4 +27,6 @@ export const SExternalLink = styled.a`
   color: ${(props) => props.s.color};
   border: ${strokeThickness}px solid ${(props) => props.s.color};
   margin-bottom: ${(props) => props.s.marginBottom};
+  flex-direction: ${(props) =>
+    props.s.direction === "right" ? "row" : "row-reverse"};
 `;

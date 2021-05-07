@@ -1332,6 +1332,7 @@ class GLTFMeshQuantizationExtension {
 // Spline Interpolation
 // Specification: https://github.com/KhronosGroup/glTF/blob/master/specification/2.0/README.md#appendix-c-spline-interpolation
 class GLTFCubicSplineInterpolant extends Interpolant {
+  // eslint-disable-next-line no-useless-constructor
   constructor(parameterPositions, sampleValues, sampleSize, resultBuffer) {
     super(parameterPositions, sampleValues, sampleSize, resultBuffer);
   }
@@ -1496,6 +1497,7 @@ function resolveURL(url, path) {
 
   // Host Relative URL
   if (/^https?:\/\//i.test(path) && /^\//.test(url)) {
+    // eslint-disable-next-line no-useless-escape
     path = path.replace(/(^https?:\/\/[^\/]+).*/i, "$1");
   }
 
@@ -2281,7 +2283,7 @@ class GLTFParser {
           if (source.mimeType === "image/png") {
             // Inspect the PNG 'IHDR' chunk to determine whether the image could have an
             // alpha channel. This check is conservative — the image could have an alpha
-            // channel with all values == 1, and the indexed type (colorType == 3) only
+            // channel with all values === 1, and the indexed type (colorType === 3) only
             // sometimes contains alpha.
             //
             // https://en.wikipedia.org/wiki/Portable_Network_Graphics#File_header
@@ -2371,8 +2373,8 @@ class GLTFParser {
       // However, we will copy UV set 0 to UV set 1 on demand for aoMap
       if (
         mapDef.texCoord !== undefined &&
-        mapDef.texCoord != 0 &&
-        !(mapName === "aoMap" && mapDef.texCoord == 1)
+        mapDef.texCoord !== 0 &&
+        !(mapName === "aoMap" && mapDef.texCoord === 1)
       ) {
         console.warn(
           "THREE.GLTFLoader: Custom UV set " +

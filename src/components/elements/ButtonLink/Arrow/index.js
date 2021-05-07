@@ -2,22 +2,24 @@ import PropTypes from "prop-types";
 
 import { SArrow, SArrowBottom, SArrowMiddle, SArrowTop } from "./SArrow";
 
-const Arrow = ({ color }) => {
+const Arrow = ({ color, direction }) => {
   return (
-    <SArrow>
+    <SArrow s={{ direction }}>
       <SArrowMiddle s={{ color }}></SArrowMiddle>
-      <SArrowTop s={{ color }}></SArrowTop>
-      <SArrowBottom s={{ color }}></SArrowBottom>
+      <SArrowTop s={{ color, direction }}></SArrowTop>
+      <SArrowBottom s={{ color, direction }}></SArrowBottom>
     </SArrow>
   );
 };
 
 Arrow.propTypes = {
   color: PropTypes.string,
+  direction: PropTypes.string,
 };
 
 Arrow.defaultProps = {
   color: "#FFF",
+  direction: "right",
 };
 
 export default Arrow;

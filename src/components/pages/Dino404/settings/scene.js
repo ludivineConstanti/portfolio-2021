@@ -124,9 +124,9 @@ function createMats() {
   });
 
   const tempMat = { Colors, red, white, whiteFloor, multi };
-  console.log(tempMat == { Colors, red, white, whiteFloor, multi });
+  console.log(tempMat === { Colors, red, white, whiteFloor, multi });
   setTimeout(() => {
-    console.log(tempMat == { Colors, red, white, whiteFloor, multi });
+    console.log(tempMat === { Colors, red, white, whiteFloor, multi });
   }, 2000);
 
   return { Colors, red, white, whiteFloor, multi };

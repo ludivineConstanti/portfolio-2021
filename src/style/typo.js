@@ -32,3 +32,22 @@ export const tMenuLink = `
     font-size: 48px;
     line-height: 64px;
 `;
+
+// illu of Pixiji project
+
+export const tMSIFontSize = "12";
+export const tMSIBFontSize = "9";
+
+export const tMSquareInfos = `
+    color: white;
+    letter-spacing: 0.75px;
+`;
+export const tMSquareKanji = `
+    color: white;
+    font-size: 20px;
+`;
+export const tMSquareInfosBottom = `
+    color: white;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+`;

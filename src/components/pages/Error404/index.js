@@ -1,8 +1,13 @@
-import styled from "styled-components";
+import Title from "components/elements/Title";
 
-export const SBackground = styled.div`
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  background-color: ${(props) => props.s.color};
-`;
+import { SError404 } from "./SError404";
+
+const Error404 = () => {
+  return (
+    <SError404>
+      <Title>Error 404</Title>
+    </SError404>
+  );
+};
+
+export default Error404;

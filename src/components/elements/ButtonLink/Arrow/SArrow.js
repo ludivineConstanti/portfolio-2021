@@ -6,7 +6,8 @@ export const SArrow = styled.div`
   position: relative;
   display: flex;
   height: 12px;
-  margin-left: 16px;
+  margin: ${(props) =>
+    props.s.direction === "right" ? "0 0 0 16px" : "0 16px 0 0"};
   align-items: center;
 `;
 
@@ -24,7 +25,6 @@ export const SArrowMiddle = styled.div`
 const end = `
     width: 12px;
     position: absolute;
-    right: 0;
 `;
 
 export const SArrowTop = styled.div`
@@ -32,7 +32,10 @@ export const SArrowTop = styled.div`
   ${end}
   background-color: ${(props) => props.s.color};
   top: 0;
-  transform: rotate(45deg);
+  transform: rotate(
+    ${(props) => (props.s.direction === "right" ? "45deg" : "-45deg")}
+  );
+  ${(props) => (props.s.direction === "right" ? "right" : "left")}: 0;
 `;
 
 export const SArrowBottom = styled.div`
@@ -40,5 +43,8 @@ export const SArrowBottom = styled.div`
   ${end}
   background-color: ${(props) => props.s.color};
   bottom: 0;
-  transform: rotate(-45deg);
+  transform: rotate(
+    ${(props) => (props.s.direction === "right" ? "-45deg" : "45deg")}
+  );
+  ${(props) => (props.s.direction === "right" ? "right" : "left")}: 0;
 `;

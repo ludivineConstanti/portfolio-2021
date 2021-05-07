@@ -21,8 +21,15 @@ export const concept = (
 export const technos = [
   "React",
   "Redux (with Redux Toolkit)",
-  "Sass (at the beginning and then switched to Styled Components)",
+  <>
+    <span style={{ textDecoration: "line-through" }}>Sass</span> (at the
+    beginning and then switched to Styled Components)
+  </>,
   "Styled components",
-  "GSAP (at the beginning and then switched to Framer Motion)",
+  <>
+    <span style={{ textDecoration: "line-through" }}>GSAP</span> (at the
+    beginning and then switched to Framer Motion)
+  </>,
   "Framer Motion",
+  "Webpack",
 ];

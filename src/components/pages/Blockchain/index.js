@@ -16,7 +16,7 @@ const Blockchain = () => {
           data: [
             {
               useCase: "website",
-              path: "/",
+              path: r[`project${pNum}`].pathWebsite,
             },
           ],
           grid: { cStart: 3 },
@@ -30,7 +30,7 @@ const Blockchain = () => {
           data: [
             {
               useCase: "code",
-              path: "https://github.com/ludivineConstanti/Pixiji",
+              path: r[`project${pNum}`].pathCode,
             },
           ],
           grid: { cStart: 3 },

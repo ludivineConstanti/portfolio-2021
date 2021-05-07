@@ -18,7 +18,7 @@ const Dino404 = () => {
           data: [
             {
               useCase: "code",
-              path: "https://github.com/ludivineConstanti/Pixiji",
+              path: r[`project${pNum}`].pathCode,
             },
           ],
           grid: { cStart: 2, rStart: 2 },

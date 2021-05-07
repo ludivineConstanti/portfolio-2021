@@ -1,10 +1,24 @@
 export const routes = {
   home: { text: "Home", path: "/", color: "#1A2755" },
-  project1: { text: "Pixiji", path: "/pixiji", color: "#002A51" },
-  project2: { text: "Dino 404", path: "/dino-404", color: "#4285F4" },
+  project1: {
+    text: "Pixiji",
+    path: "/pixiji",
+    pathCode: "https://github.com/ludivineConstanti/Pixiji",
+    pathWebsite: "/",
+    color: "#002A51",
+  },
+  project2: {
+    text: "Dino 404",
+    path: "/dino-404",
+    pathCode: "https://github.com/ludivineConstanti/dino-404",
+    pathWebsite: "/dino-404",
+    color: "#4285F4",
+  },
   project3: {
     text: "Blockchain",
     path: "/an-intro-to-blockchain",
+    pathCode: "https://github.com/ludivineConstanti/an-intro-to-Blockchain",
+    pathWebsite: "https://blockchain-apotheose.surge.sh/",
     color: "#000",
   },
 };
@@ -18,6 +32,7 @@ export const prevNextLinks = (number) => {
       useCase: "prev",
       path: routes[`project${number - 1}`].path,
       grid: { cStart: 1 },
+      direction: "left",
     });
   }
   if (routes[`project${number + 1}`]) {
