@@ -83,10 +83,6 @@ const createScene = function (container) {
   // Define the size of the renderer; in this case,
   // it will fill the entire screen
   renderer.setSize(WIDTH, HEIGHT);
-
-  // Listen to the screen: if the user resizes it
-  // we have to update the camera and the renderer size
-  window.addEventListener("resize", handleWindowResize, false);
 };
 
 function handleWindowResize() {

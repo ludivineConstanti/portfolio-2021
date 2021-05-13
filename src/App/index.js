@@ -18,6 +18,7 @@ const App = () => {
       if (r[key].path === location.pathname) colorTemp = r[key].color;
       setColor(colorTemp);
     });
+    window.scrollTo(0, 0);
   }, [location]);
   return (
     <>

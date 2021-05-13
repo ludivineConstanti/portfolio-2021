@@ -376,4 +376,8 @@ Dino.prototype.land = function () {
   }
 };
 
+Dino.prototype.reset = function () {
+  this.mesh.position.y = 0;
+};
+
 export { createDino, dino, jumpDuration, landed, dinoPosX };

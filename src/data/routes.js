@@ -10,7 +10,7 @@ export const routes = {
     path: "/pixiji",
     component: Pixiji,
     pathCode: "https://github.com/ludivineConstanti/Pixiji",
-    pathWebsite: "/",
+    pathWebsite: "https://pixiji.surge.sh/",
     color: "#002A51",
   },
   project2: {

@@ -25,6 +25,8 @@ const initial = {
 };
 let current = { ...initial };
 let requestId = undefined;
+let state = store.getState();
+let gameState = state.dino404.gameState;
 
 // let controls;
 let mats;
@@ -55,10 +57,19 @@ function init(container) {
   // controls.noZoom = true;
 }
 
+function isJumping(e) {
+  if (gameState === "playing") {
+    if (e.key === "ArrowUp" || " " || "w" || e.clientX) {
+      e.preventDefault();
+      current.isJumping = true;
+    }
+  }
+}
+
 function animationLoop() {
+  state = store.getState();
+  gameState = state.dino404.gameState;
   // controls.update();
-  const state = store.getState();
-  const gameState = state.dino404.gameState;
   if (gameState === "playing") {
     current.score += 1;
     store.dispatch(
@@ -100,12 +111,6 @@ function animationLoop() {
       current.isLanding = true;
       dino.land();
     }
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowUp" || e.key === " ") {
-        e.preventDefault();
-        current.isJumping = true;
-      }
-    });
 
     current.obstacleTimeTracker++;
 
@@ -133,6 +138,7 @@ function resetGame() {
   current = { ...initial };
   console.log(current);
   store.dispatch(updateValDino404({ prop: ["score"], value: [current.score] }));
+  dino.reset();
 }
 
-export { current, init, renderer, cancelLoop, resetGame };
+export { current, init, renderer, cancelLoop, resetGame, isJumping };
