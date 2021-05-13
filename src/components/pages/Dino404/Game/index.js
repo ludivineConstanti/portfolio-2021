@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 
-import { init } from "../tJsSettings/main.js";
+import { init, cancelLoop } from "../tJsSettings/main.js";
 import { handleWindowResize } from "../tJsSettings/scene.js";
-import { SGame } from "./SGame";
+import { SGame, SCanvas } from "./SGame";
 import GameUX from "../GameUX";
 
 const Game = () => {
@@ -14,12 +14,13 @@ const Game = () => {
     setIsReady(true);
     return () => {
       window.removeEventListener("resize", handleWindowResize);
+      cancelLoop();
     };
   }, []);
 
   return (
     <SGame onClick={() => {}}>
-      <canvas ref={container}></canvas>
+      <SCanvas ref={container}></SCanvas>
       {isReady && <GameUX />}
     </SGame>
   );

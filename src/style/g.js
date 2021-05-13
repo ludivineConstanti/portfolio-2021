@@ -26,8 +26,10 @@ export const zISquareHover = 2;
 export const zIMainSquare = 1;
 
 // Breakpoints
-export const breakPointT = "@media only screen and (min-width: 576px)";
-export const breakPointD = "@media only screen and (min-width: 992px)";
+export const breakPointTNum = 576;
+export const breakPointT = `@media only screen and (min-width: ${breakPointTNum}px)`;
+export const breakPointDNum = 992;
+export const breakPointD = `@media only screen and (min-width: ${breakPointDNum}px)`;
 
 // for Illu of Pixiji
 export const squareUnitM = "2vw";

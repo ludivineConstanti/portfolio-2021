@@ -11,17 +11,18 @@ import {
   rowGap,
 } from "style/g";
 
-const mTopBottom = "104px";
-const mTopBottomM = "80px";
+const mTopBottom = 104;
+const mTopBottomM = 80;
 
 export const SInfosProject = styled.div`
   position: relative;
   top: -${(props) => props.s.extraHeight};
+  margin-bottom: -${(props) => props.s.extraHeight};
   max-width: 100vw;
   background-color: ${(props) => props.s.backgroundColor};
   color: ${(props) => props.s.color};
   z-index: ${zIInfosProject};
-  padding-top: calc(${mTopBottomM} + ${(props) => props.s.extraHeight});
+  padding-top: calc(${mTopBottomM}px + ${(props) => props.s.extraHeight});
   padding-right: ${borderMarginsM + 16}px;
   padding-bottom: ${mTopBottomM}px;
   padding-left: ${borderMarginsM + 16}px;
@@ -33,11 +34,10 @@ export const SInfosProject = styled.div`
     column-gap: ${columnGap}px;
     row-gap: ${columnGap / 2}px;
     grid-template: repeat(2, auto) / repeat(2, 1fr);
-    padding-top: calc(${mTopBottom} + ${(props) => props.s.extraHeight});
+    padding-top: calc(${mTopBottom}px + ${(props) => props.s.extraHeight});
     padding-right: ${borderMargins3M}px;
     padding-bottom: ${mTopBottom}px;
     padding-left: ${borderMargins3M}px;
-    padding-top: calc(${mTopBottom} + ${(props) => props.s.extraHeight});
   }
   ${breakPointD} {
     padding-right: ${borderMargins3}px;

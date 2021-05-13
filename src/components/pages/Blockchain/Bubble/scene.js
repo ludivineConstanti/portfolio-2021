@@ -17,6 +17,7 @@ let cameraPerspective;
 let cameraPerspectiveHelper;
 let bubble;
 let texture;
+let requestId = false;
 
 function createScene(container) {
   scene = new THREE.Scene();
@@ -43,7 +44,6 @@ function createScene(container) {
 }
 
 function Bubble() {
-  console.log("create bubble");
   this.target = new THREE.Object3D();
   this.group = new THREE.Object3D();
 
@@ -55,11 +55,9 @@ function Bubble() {
     opacity: 0.2,
     roughness: 0,
     metalness: 0.2,
-    // set the color of the shine (dark grey, by default)
-    specular: 0xfff,
     // allow inside and outside plane of the geometry to be visible
     side: THREE.DoubleSide,
-    shading: THREE.FlatShading,
+    flatShading: true,
   });
 
   // To create an object in Three.js, we have to create a mesh
@@ -75,8 +73,6 @@ function Bubble() {
     opacity: 0.2,
     roughness: 0,
     metalness: 0.2,
-    // set the color of the shine (dark grey, by default)
-    specular: 0xffffff,
     side: THREE.FrontSide,
   });
 
@@ -87,7 +83,6 @@ function Bubble() {
 
   this.target.add(this.group);
   scene.add(this.mesh);
-  console.log("create bubble");
 }
 
 function createBubble() {
@@ -141,9 +136,12 @@ function render() {
 }
 
 function animationLoop() {
-  console.log("rendering");
-  requestAnimationFrame(animationLoop);
+  requestId = requestAnimationFrame(animationLoop);
   render();
 }
 
-export { init, animationLoop, handleWindowResize };
+function cancelLoop() {
+  cancelAnimationFrame(requestId);
+}
+
+export { init, cancelLoop, handleWindowResize };

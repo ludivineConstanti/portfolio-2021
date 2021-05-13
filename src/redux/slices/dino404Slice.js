@@ -4,6 +4,7 @@ export const dino404Slice = createSlice({
   name: "dino404",
   initialState: {
     gameState: "init",
+    score: 0,
   },
 
   reducers: {

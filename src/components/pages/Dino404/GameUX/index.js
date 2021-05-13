@@ -4,6 +4,7 @@ import { updateValDino404 } from "redux/slices/dino404Slice";
 
 const mapStateToProps = (state) => ({
   gameState: state.dino404.gameState,
+  score: state.dino404.score,
 });
 
 const mapDispatchToProps = (dispatch) => ({

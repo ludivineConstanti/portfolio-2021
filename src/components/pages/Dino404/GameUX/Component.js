@@ -1,34 +1,12 @@
-import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import { animationLoop } from "../tJsSettings/main.js";
+import { resetGame } from "../tJsSettings/main.js";
 import { SButton, SGameOver, SInterface, SScore } from "./SGameUX";
 import { routes as r } from "data/routes";
 import { projectNumber as pNum } from "../data";
+import { removeObstacle } from "../tJsObjects/obstacles";
 
-const GameUX = ({ gameState, updateValDino404 }) => {
-  const [score, setScore] = useState(0);
-
-  useEffect(() => {
-    const updateScore = setInterval(() => {
-      setScore((score) => (gameState === "playing" ? score + 1 : score));
-    }, 100);
-
-    return () => {
-      clearInterval(updateScore);
-    };
-  }, []);
-
-  useEffect(() => {
-    cancelAnimationFrame(animationLoop);
-    if (gameState !== "game over") {
-      animationLoop(gameState);
-      console.log("change game state", gameState);
-    }
-    return () => {
-      cancelAnimationFrame(animationLoop);
-    };
-  }, [gameState]);
+const GameUX = ({ gameState, score, updateValDino404 }) => {
   return (
     <>
       {gameState !== "init" && (
@@ -39,9 +17,13 @@ const GameUX = ({ gameState, updateValDino404 }) => {
         {gameState !== "playing" && (
           <SButton
             s={{ color: r[`project${pNum}`].color }}
-            onClick={() =>
-              updateValDino404({ prop: ["gameState"], value: ["playing"] })
-            }
+            onClick={() => {
+              if (gameState === "game over") {
+                removeObstacle();
+                resetGame();
+              }
+              updateValDino404({ prop: ["gameState"], value: ["playing"] });
+            }}
           >
             {gameState === "init" ? "Play" : "Try again"}
           </SButton>
@@ -53,6 +35,7 @@ const GameUX = ({ gameState, updateValDino404 }) => {
 
 GameUX.propTypes = {
   gameState: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
   updateValDino404: PropTypes.func.isRequired,
 };
 

@@ -278,6 +278,17 @@ function animateObstacles(animatedArr, recycledArr, speed) {
   }
 }
 
+function removeObstacle() {
+  const animatedArr = [visibleSObst, visibleObst];
+  const invisibleArr = [invisibleSObst, invisibleObst];
+  for (let i = 0; i < animatedArr.length; i++) {
+    animatedArr[i].forEach((cactus, j) => {
+      scene.remove(cactus);
+      invisibleArr[i].push(animatedArr[i].splice(j, 1)[0]);
+    });
+  }
+}
+
 function modifyRowCylinder(posAttribute, newWidth, posY) {
   //front right
   const xC8 = posAttribute.getX(8) + newWidth * 0.85;
@@ -317,4 +328,4 @@ function modifyRowCylinder(posAttribute, newWidth, posY) {
   posAttribute.setXYZ(11, xC11, yC11, zC11);
 }
 
-export { fillcactusArr, updateObstacles, putObstacleInScene };
+export { fillcactusArr, updateObstacles, putObstacleInScene, removeObstacle };

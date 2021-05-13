@@ -4,15 +4,34 @@ import matcap from "../tJsAssets/matCap.jpg";
 import matcapTest from "../tJsAssets/try25.png";
 import matcapFloor from "../tJsAssets/try25B.png";
 
-import { borderMargins3 } from "style/g";
+import { borderMargins3, breakPointDNum } from "style/g";
 
 let scene, camera, fieldOfView, aspectRatio, nearPlane, farPlane, renderer;
 
 // need to change it also in handleWindowResize
-let HEIGHT = window.innerHeight / 2;
-let WIDTH = window.innerWidth - borderMargins3 * 2;
+let HEIGHT;
+let WIDTH;
+let limitR;
 
-let limitR = WIDTH / 3;
+function returnWidth() {
+  let tempWidth;
+  if (window.innerWidth <= breakPointDNum) {
+    tempWidth = window.innerWidth;
+    limitR = tempWidth / 2;
+  } else {
+    tempWidth = window.innerWidth - borderMargins3 * 2;
+    limitR = tempWidth / 2.5;
+  }
+  return tempWidth;
+}
+
+function returnHeight() {
+  return window.innerHeight / 2;
+}
+
+WIDTH = returnWidth();
+HEIGHT = returnHeight();
+
 let limitL = -limitR;
 
 const createScene = function (container) {
@@ -72,9 +91,8 @@ const createScene = function (container) {
 
 function handleWindowResize() {
   // update height and width of the renderer and the camera
-  HEIGHT = window.innerHeight / 2;
-  WIDTH = window.innerWidth - borderMargins3 * 2;
-  limitR = WIDTH / 3;
+  HEIGHT = returnHeight();
+  WIDTH = returnWidth();
   limitL = -limitR;
   renderer.setSize(WIDTH, HEIGHT);
   camera.aspect = WIDTH / HEIGHT;
@@ -123,12 +141,6 @@ function createMats() {
     flatShading: true,
     matcap: tMatcap,
   });
-
-  const tempMat = { Colors, red, white, whiteFloor, multi };
-  console.log(tempMat === { Colors, red, white, whiteFloor, multi });
-  setTimeout(() => {
-    console.log(tempMat === { Colors, red, white, whiteFloor, multi });
-  }, 2000);
 
   return { Colors, red, white, whiteFloor, multi };
 }

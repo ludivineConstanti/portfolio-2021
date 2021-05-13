@@ -18,7 +18,7 @@ let scene,
   renderer;
 let group;
 // let controls;
-let animationLoop;
+let requestId = false;
 
 function init(container) {
   // set up the scene, the camera and the renderer
@@ -92,7 +92,6 @@ function handleWindowResize() {
 }
 
 function handleLoad(gltf) {
-  console.log(gltf.scenes);
   const mesh = gltf.scene.children[0];
   mesh.scale.set(20, 20, 20);
   mesh.rotation.set(0, 0, 0);
@@ -120,7 +119,11 @@ function loop() {
   group.rotation.x -= 0.0012;
   renderer.render(scene, camera);
   // name it to be able to remove it on unMount, int he component
-  animationLoop = requestAnimationFrame(loop);
+  requestId = requestAnimationFrame(loop);
 }
 
-export { init, animationLoop, handleWindowResize };
+function cancelLoop() {
+  cancelAnimationFrame(requestId);
+}
+
+export { init, cancelLoop, handleWindowResize };

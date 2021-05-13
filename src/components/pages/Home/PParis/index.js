@@ -1,13 +1,13 @@
 import { useRef, useEffect } from "react";
 
-import { init, animationLoop, handleWindowResize } from "./scene";
+import { init, cancelLoop, handleWindowResize } from "./scene";
 
 const PParis = () => {
   const container = useRef();
   useEffect(() => {
     init(container.current);
     return () => {
-      cancelAnimationFrame(animationLoop);
+      cancelLoop();
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);

@@ -33,6 +33,7 @@ const Links = ({ grid, data, color }) => {
       ) : (
         data.map((link, i) => (
           <SContainer
+            key={`linkContainer${i}link.path`}
             s={{
               cStart: link.grid.cStart,
               cSpan: link.grid.cSpan,
@@ -59,7 +60,7 @@ const Links = ({ grid, data, color }) => {
 
 Links.propTypes = {
   grid: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   color: PropTypes.string,
 };
 

@@ -2,7 +2,7 @@ import * as THREE from "three";
 
 import { scene } from "../tJsSettings/scene.js";
 
-import { dinoSpeed } from "../tJsSettings/main.js";
+import { current } from "../tJsSettings/main.js";
 
 // makes dino available to global scope
 let dino;
@@ -315,26 +315,26 @@ Dino.prototype.run = function () {
   // turn opposite to the clockwise direction
   // need to use negative sin and cos if want it to turn in the other direction
 
-  this.body.rotation.z = Math.cos(dinoSpeed * 2) * 0.15 - 0.3;
-  this.body.rotation.y = Math.cos(dinoSpeed) * 0.2;
+  this.body.rotation.z = Math.cos(current.dinoSpeed * 2) * 0.15 - 0.3;
+  this.body.rotation.y = Math.cos(current.dinoSpeed) * 0.2;
 
-  //this.head.position.y = Math.sin(dinoSpeed) * 0.1;
-  //this.head.rotation.z = -Math.cos(dinoSpeed + Math.PI) * 0.03;
-  this.head.rotation.z = Math.cos(dinoSpeed * 2) * 0.1;
-  this.mouth.rotation.z = -Math.cos(dinoSpeed * 2 + Math.PI) * 0.08;
+  //this.head.position.y = Math.sin(current.dinoSpeed) * 0.1;
+  //this.head.rotation.z = -Math.cos(current.dinoSpeed + Math.PI) * 0.03;
+  this.head.rotation.z = Math.cos(current.dinoSpeed * 2) * 0.1;
+  this.mouth.rotation.z = -Math.cos(current.dinoSpeed * 2 + Math.PI) * 0.08;
 
-  this.armR.rotation.z = -Math.cos(dinoSpeed) * 0.5;
+  this.armR.rotation.z = -Math.cos(current.dinoSpeed) * 0.5;
 
-  this.tail1.rotation.z = Math.cos(dinoSpeed * 2) * 0.2;
-  this.tail2.rotation.z = Math.cos(dinoSpeed * 2) * 0.1 - Math.PI / 4;
-  this.tail3.rotation.z = Math.cos(dinoSpeed * 2) * 0.1 - Math.PI / 4;
+  this.tail1.rotation.z = Math.cos(current.dinoSpeed * 2) * 0.2;
+  this.tail2.rotation.z = Math.cos(current.dinoSpeed * 2) * 0.1 - Math.PI / 4;
+  this.tail3.rotation.z = Math.cos(current.dinoSpeed * 2) * 0.1 - Math.PI / 4;
 
-  this.legR.position.y = -(Math.sin(dinoSpeed) * 2) + legRY;
-  this.legR.rotation.z = Math.cos(dinoSpeed);
-  this.foot.rotation.z = -Math.cos(dinoSpeed) * 0.5;
+  this.legR.position.y = -(Math.sin(current.dinoSpeed) * 2) + legRY;
+  this.legR.rotation.z = Math.cos(current.dinoSpeed);
+  this.foot.rotation.z = -Math.cos(current.dinoSpeed) * 0.5;
 
-  this.legL.position.y = -(Math.sin(dinoSpeed + Math.PI) * 2) + legRY;
-  this.legL.rotation.z = Math.cos(dinoSpeed + Math.PI);
+  this.legL.position.y = -(Math.sin(current.dinoSpeed + Math.PI) * 2) + legRY;
+  this.legL.rotation.z = Math.cos(current.dinoSpeed + Math.PI);
 };
 
 Dino.prototype.jump = function () {
