@@ -1,10 +1,11 @@
 import * as THREE from "three";
 
-import { scene, assignColor, limitR, limitL } from "../settings/scene.js";
-
+import { scene, assignColor, limitR, limitL } from "../tJsSettings/scene.js";
 import { BufferGeometryUtils } from "helpers/BufferGeometry";
-
 import { dino } from "./dino.js";
+
+import store from "redux/store";
+import { updateValDino404 } from "redux/slices/dino404Slice";
 
 let cactusArr = [];
 let sCactusArr = [];
@@ -118,7 +119,9 @@ function fillcactusArr(mats) {
   makeSmallCopy(cactus1_C1, 0.5);
   makeSmallCopy(cactus1_C1, 0.6);
   makeSmallCopy(cactus1_C1, 0.7);
+  makeSmallCopy(cactus1_C1, 0.7);
   makeSmallCopy(cactus1_C2, 0.5);
+  makeSmallCopy(cactus1_C2, 0.6);
   makeSmallCopy(cactus1_C2, 0.7);
   /*makeSmallCopy(cactus1_C3, 0.5);*/
 
@@ -260,7 +263,9 @@ function animateObstacles(animatedArr, recycledArr, speed) {
       cactusX < colliderData[cactus.name].xR * tolerance + dinoX &&
       dinoY < colliderData[cactus.name].y * tolerance
     ) {
-      // console.log("**************TOUCHING**************");
+      store.dispatch(
+        updateValDino404({ prop: ["gameState"], value: ["game over"] })
+      );
     }
 
     if (cactus.position.x < limitL) {

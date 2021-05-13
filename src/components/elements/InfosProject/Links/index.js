@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import ButtonLink from "components/elements/ButtonLink";
 import { useCases } from "./data.js";
-import { strokeThickness } from "style/g";
+import { rowGap } from "style/g";
 import { SContainer } from "./SLinks";
 
 const Links = ({ grid, data, color }) => {
@@ -23,9 +23,7 @@ const Links = ({ grid, data, color }) => {
               path={link.path}
               external={useCases[link.useCase].external}
               color={color}
-              marginBottom={
-                link.marginBottom ? `${strokeThickness / 2}px` : "0px"
-              }
+              marginBottom={link.marginBottom ? `${rowGap}px` : "0px"}
               direction={link.direction}
             >
               {useCases[link.useCase].text}
@@ -47,9 +45,7 @@ const Links = ({ grid, data, color }) => {
               path={link.path}
               external={useCases[link.useCase].external}
               color={color}
-              marginBottom={
-                link.marginBottom ? `${strokeThickness / 2}px` : "0px"
-              }
+              marginBottom={link.marginBottom ? `${rowGap}px` : "0px"}
               direction={link.direction}
             >
               {useCases[link.useCase].text}

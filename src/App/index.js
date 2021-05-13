@@ -5,10 +5,6 @@ import { routes as r, routesKeys as rKeys } from "data/routes";
 import { SBackground } from "./SApp";
 // Pages
 import Menu from "components/pages/Menu";
-import Home from "components/pages/Home";
-import Pixiji from "components/pages/Pixiji";
-import Dino404 from "components/pages/Dino404";
-import Blockchain from "components/pages/Blockchain";
 import Error404 from "components/pages/Error404";
 
 const App = () => {
@@ -28,11 +24,15 @@ const App = () => {
       <SBackground s={{ color }}></SBackground>
       <Menu color={color}></Menu>
       <Switch>
-        <Route path={r.home.path} exact component={Home} />
-        <Route path={r.project1.path} exact component={Pixiji} />
-        <Route path={r.project2.path} exact component={Dino404} />
-        <Route path={r.project3.path} exact component={Blockchain} />
-        <Error404></Error404>
+        {rKeys.map((key) => (
+          <Route
+            path={r[key].path}
+            key={r[key].path}
+            exact
+            component={r[key].component}
+          />
+        ))}
+        <Route component={Error404} />
       </Switch>
     </>
   );

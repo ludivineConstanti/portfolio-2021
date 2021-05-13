@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
 import { tTextProject } from "style/typo";
-import { columnGap } from "style/g";
-
-export const STechnos = styled.section`
-  grid-column: 2 / span 1;
-`;
+import { columnGap, breakPointT, breakPointD } from "style/g";
 
 export const SBulletPoint = styled.div`
   height: 8px;
@@ -18,8 +14,14 @@ export const SBulletPoint = styled.div`
 `;
 
 export const STechnosList = styled.ul`
-  columns: ${(props) => props.s.cSpan};
-  column-gap: ${columnGap}px;
+  ${breakPointT} {
+    columns: ${(props) => (props.s.cSpan < 3 ? props.s.cSpan : 2)};
+    column-gap: ${columnGap}px;
+  }
+  ${breakPointD} {
+    columns: ${(props) => props.s.cSpan};
+    column-gap: ${columnGap}px;
+  }
 `;
 
 export const STechnoEl = styled.li`

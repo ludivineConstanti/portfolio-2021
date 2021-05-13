@@ -1,15 +1,18 @@
 import styled from "styled-components";
 
-import { strokeThickness } from "style/g";
+import { strokeThickness, breakPointD, sSocialMedia } from "style/g";
 
 export const SSocialMedia = styled.a`
   border: ${strokeThickness}px solid white;
-  height: 40px;
-  width: 40px;
+  height: ${sSocialMedia}px;
+  width: ${sSocialMedia}px;
   display: block;
-  border-radius: 40px;
-  margin-left: 16px;
+  border-radius: ${sSocialMedia}px;
+  margin: 0 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  ${breakPointD} {
+    margin: 0 0 0 16px;
+  }
 `;

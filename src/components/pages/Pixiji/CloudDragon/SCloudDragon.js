@@ -1,8 +1,5 @@
 import styled from "styled-components";
 import {
-  squareUnitM,
-  squareUnitT,
-  squareUnit,
   illuDimensions,
   breakPointT,
   breakPointD,
@@ -11,37 +8,39 @@ import {
 
 export const SContainer = styled.div`
   position: relative;
-  height: 80vh;
+  height: 80vw;
+  ${breakPointT} {
+    height: 70vw;
+  }
+  ${breakPointD} {
+    height: 50vw;
+  }
 `;
 
 const dCloudTop = illuDimensions(4, 12);
-const pCloudTop = illuCustomPos({ right: { pos: [5] } });
+const pCloudTop = illuCustomPos({ right: { pos: [5] }, bottom: { pos: [33] } });
 
 export const SCloudTop = styled.div`
   ${dCloudTop}
   ${pCloudTop.right}
-  bottom: calc(${squareUnitM} * 40);
-  ${breakPointT} {
-    bottom: calc(${squareUnitT} * 40);
-  }
-  ${breakPointD} {
-    top: calc(${squareUnit} * 5);
-  }
+  ${pCloudTop.bottom}
 `;
 
 const oDragonR = 6;
 const oDragonB = 4;
 
-const dCRightM = 20;
-const dCBottomM = 14;
-const dCBottomT = 10;
-const dCBottomD = 7;
+const dCRightM = 5;
+const dCRightT = 10;
+const dCRightD = 20;
+const dCBottomM = 7;
 
 const dDragon = illuDimensions(18, 27);
 const pDragon = illuCustomPos({
-  right: { pos: [oDragonR + dCRightM] },
+  right: {
+    pos: [oDragonR + dCRightM, oDragonR + dCRightT, oDragonR + dCRightD],
+  },
   bottom: {
-    pos: [oDragonB + dCBottomM, oDragonB + dCBottomT, oDragonB + dCBottomD],
+    pos: [oDragonB + dCBottomM],
   },
 });
 
@@ -53,8 +52,8 @@ export const SDragon = styled.div`
 
 const dCloudDragon = illuDimensions(4, 30);
 const pCloudDragon = illuCustomPos({
-  right: { pos: [dCRightM] },
-  bottom: { pos: [dCBottomM, dCBottomT, dCBottomD] },
+  right: { pos: [dCRightM, dCRightT, dCRightD] },
+  bottom: { pos: [dCBottomM] },
 });
 
 export const SCloudDragon = styled.div`

@@ -1,16 +1,12 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import { strokeThickness } from "style/g";
+import { strokeThickness, stButton } from "style/g";
 import { tButtonLink } from "style/typo";
 
 const link = `
   ${tButtonLink}
-  display: flex;
-  align-items: center;
-  padding: 24px;
-  height: 8px;
-  border-radius: 80px;
+  ${stButton}
   justify-content: flex-end;
 `;
 

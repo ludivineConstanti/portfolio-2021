@@ -1,6 +1,14 @@
+import { breakPointT, breakPointD } from "./g";
+
 export const tTitle = `
-    font-size: 80px;
     font-family: utopia-std-headline;
+    font-size: 15vw;
+    ${breakPointT} {
+        font-size: 10vw;
+    }
+    ${breakPointD} {
+        font-size: 5vw;
+    }
 `;
 
 export const tSubtitle = `
@@ -31,6 +39,11 @@ export const tMenuLink = `
     font-family: utopia-std-headline;
     font-size: 48px;
     line-height: 64px;
+`;
+
+export const tDinoGame = `
+    font-family: utopia-std-headline;
+    font-size: 48px;
 `;
 
 // illu of Pixiji project

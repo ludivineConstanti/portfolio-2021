@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
-import { columnGap } from "style/g";
+import { columnGap, breakPointT, breakPointD } from "style/g";
 import { tTextProject } from "style/typo";
 
 export const SText = styled.p`
   ${tTextProject};
-  column-count: ${(props) => props.s.span};
-  column-gap: ${columnGap}px;
+  ${breakPointT} {
+    column-count: ${(props) => (props.s.span < 3 ? props.s.span : 2)};
+    column-gap: ${columnGap}px;
+  }
+  ${breakPointD} {
+    column-count: ${(props) => props.s.span};
+  }
 `;

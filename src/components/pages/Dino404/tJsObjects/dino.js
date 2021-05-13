@@ -1,8 +1,8 @@
 import * as THREE from "three";
 
-import { scene } from "../settings/scene.js";
+import { scene } from "../tJsSettings/scene.js";
 
-import { dinoSpeed } from "../settings/main.js";
+import { dinoSpeed } from "../tJsSettings/main.js";
 
 // makes dino available to global scope
 let dino;

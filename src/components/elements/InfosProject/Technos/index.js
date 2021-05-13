@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
-import { STechnos, STechnosList, STechnoEl, SBulletPoint } from "./STechnos";
+import { STechnosList, STechnoEl, SBulletPoint } from "./STechnos";
 import TitleInfos from "components/elements/TitleInfos";
 
 const Technos = ({ arrText, color, cSpan }) => {
   return (
-    <STechnos>
+    <>
       <TitleInfos>Technologies</TitleInfos>
       <STechnosList s={{ cSpan }}>
         {arrText.map((techno, i) => (
@@ -15,7 +15,7 @@ const Technos = ({ arrText, color, cSpan }) => {
           </STechnoEl>
         ))}
       </STechnosList>
-    </STechnos>
+    </>
   );
 };
 

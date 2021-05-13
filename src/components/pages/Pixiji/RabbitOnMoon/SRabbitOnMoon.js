@@ -1,17 +1,19 @@
 import styled from "styled-components";
 import {
-  squareUnitT,
   squareUnitM,
   squareUnit,
-  breakPointT,
   breakPointD,
+  breakPointT,
   illuDimensions,
   illuCustomPos,
 } from "style/g";
 
 export const SContainer = styled.div`
   position: relative;
-  height: 45vh;
+  height: 45vw;
+  ${breakPointT} {
+    height: 25vw;
+  }
 `;
 
 const dPlanet = illuDimensions(10, 10);
@@ -19,10 +21,7 @@ const dPlanet = illuDimensions(10, 10);
 export const SPlanet = styled.div`
   ${dPlanet}
   left: calc(${squareUnitM} * 5);
-  bottom: calc(${squareUnitM} * 32);
-  ${breakPointT} {
-    bottom: calc(${squareUnitT} * 22);
-  }
+  bottom: calc(${squareUnitM} * 22);
   ${breakPointD} {
     left: calc(${squareUnit} * 18);
     top: calc(${squareUnit});

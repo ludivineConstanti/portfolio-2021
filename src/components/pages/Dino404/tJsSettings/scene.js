@@ -1,8 +1,8 @@
 import * as THREE from "three";
 
-import matcap from "../assets/matCap.jpg";
-import matcapTest from "../assets/try25.png";
-import matcapFloor from "../assets/try25B.png";
+import matcap from "../tJsAssets/matCap.jpg";
+import matcapTest from "../tJsAssets/try25.png";
+import matcapFloor from "../tJsAssets/try25B.png";
 
 import { borderMargins3 } from "style/g";
 
@@ -12,8 +12,8 @@ let scene, camera, fieldOfView, aspectRatio, nearPlane, farPlane, renderer;
 let HEIGHT = window.innerHeight / 2;
 let WIDTH = window.innerWidth - borderMargins3 * 2;
 
-const limitR = 500;
-const limitL = -limitR;
+let limitR = WIDTH / 3;
+let limitL = -limitR;
 
 const createScene = function (container) {
   // Get the width and the height of the screen,
@@ -59,7 +59,6 @@ const createScene = function (container) {
   });
 
   // Change the colors => suppose to make it more accurate
-  renderer.gammaFactor = 2.2;
   renderer.outputEncoding = THREE.sRGBEncoding;
 
   // Define the size of the renderer; in this case,
@@ -75,6 +74,8 @@ function handleWindowResize() {
   // update height and width of the renderer and the camera
   HEIGHT = window.innerHeight / 2;
   WIDTH = window.innerWidth - borderMargins3 * 2;
+  limitR = WIDTH / 3;
+  limitL = -limitR;
   renderer.setSize(WIDTH, HEIGHT);
   camera.aspect = WIDTH / HEIGHT;
   camera.updateProjectionMatrix();
@@ -155,10 +156,12 @@ function assignColor(color, geom) {
 export {
   createScene,
   createMats,
+  handleWindowResize,
   scene,
   camera,
   renderer,
   assignColor,
   limitR,
   limitL,
+  WIDTH,
 };

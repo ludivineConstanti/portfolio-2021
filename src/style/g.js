@@ -1,10 +1,18 @@
+// sizes
 export const sMenuIcon = 72;
+export const sMenuIconM = 56;
+export const sSocialMedia = 40;
 export const strokeThickness = 4;
 
+// margins
 export const borderMargins = 80;
+export const borderMarginsM = 20;
 export const borderMargins3 = borderMargins * 2 + sMenuIcon;
+export const borderMargins3M = borderMarginsM * 2 + sMenuIconM;
 export const columnGap = 64;
+export const rowGap = columnGap / 2;
 
+// z-index
 export const zIMenuIcon = 3;
 export const zIMenu = 2;
 export const zIDinoGame = 1;
@@ -26,6 +34,17 @@ export const squareUnitM = "2vw";
 export const squareUnitT = "1.5vw";
 export const squareUnit = "1.1vw";
 
+//
+
+export const stButton = `
+  padding: 24px;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 80px;
+`;
+
+// for Illu of Pixiji
 export const illuDimensions = (height, width) => `
 position: absolute;
   display: grid;

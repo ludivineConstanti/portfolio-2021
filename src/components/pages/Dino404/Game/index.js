@@ -1,32 +1,26 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 
-import { init, loop } from "../settings/main.js";
+import { init } from "../tJsSettings/main.js";
+import { handleWindowResize } from "../tJsSettings/scene.js";
 import { SGame } from "./SGame";
-import { createMats } from "../settings/scene";
+import GameUX from "../GameUX";
 
 const Game = () => {
   const container = useRef();
-  const [mats, setMats] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    setMats(createMats());
+    init(container.current);
+    setIsReady(true);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
   }, []);
 
-  useEffect(() => {
-    if (mats) {
-      setTimeout(() => {
-        init(container.current, mats);
-      }, 10);
-    }
-  }, [mats]);
-
   return (
-    <SGame
-      onClick={() => {
-        loop();
-      }}
-    >
+    <SGame onClick={() => {}}>
       <canvas ref={container}></canvas>
+      {isReady && <GameUX />}
     </SGame>
   );
 };

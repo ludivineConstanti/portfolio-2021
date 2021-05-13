@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { scene, assignColor } from "../settings/scene.js";
+import { scene, assignColor } from "../tJsSettings/scene.js";
 
 import { BufferGeometryUtils } from "helpers/BufferGeometry";
 
@@ -307,10 +307,8 @@ function putFloorInScene(posX = 600, mats) {
 }
 
 function fillFloor(mats) {
-  let posX = limitFloorLeft;
   for (let i = 0; i < numFloorInScene; i++) {
-    putFloorInScene(posX, mats);
-    posX += floorWidth;
+    putFloorInScene(limitFloorLeft + floorWidth * i, mats);
   }
 }
 

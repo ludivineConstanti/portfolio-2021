@@ -1,12 +1,19 @@
 import * as THREE from "three";
 
-import { scene, assignColor, limitR, limitL } from "../settings/scene.js";
+import {
+  scene,
+  assignColor,
+  limitR,
+  limitL,
+  WIDTH,
+} from "../tJsSettings/scene.js";
 
-import { BufferGeometryUtils } from "../../../../helpers/BufferGeometry";
+import { BufferGeometryUtils } from "helpers/BufferGeometry";
 
 let visibleClouds = [];
 let invisibleClouds = [];
 let cloud;
+const margin = -0.002 * WIDTH;
 
 function createCloud(mats) {
   // Create an empty container that will hold the different parts of the cloud
@@ -51,12 +58,16 @@ function getCloud() {
 
 function putCloudInSky(posX) {
   const cloud = getCloud();
-  cloud.position.y = 20 + Math.random() * 100;
-  cloud.position.x = posX || limitR;
-
   // for a better result, we position the clouds
   // at random depths inside of the scene
-  cloud.position.z = -30 - Math.random() * 200;
+  const cloudZ = -30 - Math.random() * 200;
+  cloud.position.z = cloudZ;
+  // clouds will get in front of the cactus if they are too low
+  // which breaks the feeling of depth => clouds move slowlier since they are further away
+  // but can't be further away if they are in front of the cactus
+  cloud.position.y = 25 + Math.random() * 100;
+  // the further away the clouds are (lower z number) the longer they are visible
+  cloud.position.x = posX || limitR + cloudZ * margin;
 
   // we also set a random scale for each cloud
   const s = 1 + Math.random();
@@ -69,7 +80,7 @@ function putCloudInSky(posX) {
 
 function fillSky(mats) {
   createCloud(mats);
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 5; i++) {
     // second value needs to be the double of second one
     // - a => limit of x to the left
     // + a => reset to 0
@@ -83,14 +94,15 @@ function updateCloud(speed) {
   for (let i = 0; i < visibleClouds.length; i++) {
     const cloud = visibleClouds[i];
     cloud.position.x -= speed;
+    const cloudZ = cloud.position.clone().z;
     // check if the particle is out of the field of view
-    if (cloud.position.x < limitL) {
+    if (cloud.position.x < limitL - cloudZ * margin) {
       scene.remove(cloud);
       // recycle the particle
       invisibleClouds.push(visibleClouds.splice(i, 1)[0]);
       i--;
     }
-    if (visibleClouds.length < 6) {
+    if (visibleClouds.length < 5) {
       putCloudInSky();
     }
   }
