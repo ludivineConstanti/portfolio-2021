@@ -4,8 +4,13 @@ import * as THREE from "three";
 import { GLTFLoader } from "helpers/GLTFLoader.js";
 
 import paris from "./paris.gltf";
-import matcap from "./matcapBW.jpg";
-import parisTexture from "./parisTexture.png";
+import mWater from "./textures/waterT4.jpg";
+import mTrees from "./textures/treesT1.png";
+import mTreesWhite from "./textures/treesT2.jpg";
+import mWalls from "./textures/wallsT3.jpg";
+import mRoofs from "./textures/roofsT1.jpg";
+import mRoads from "./textures/roadsT1.png";
+import mGrass from "./textures/grassT4.jpg";
 
 let scene,
   camera,
@@ -92,17 +97,49 @@ function handleWindowResize() {
 }
 
 function handleLoad(gltf) {
-  const mesh = gltf.scene.children[0];
-  mesh.scale.set(20, 20, 20);
-  mesh.rotation.set(0, 0, 0);
-  const tMatcap = new THREE.TextureLoader().load(matcap);
-  const tMap = new THREE.TextureLoader().load(parisTexture);
-  mesh.material = new THREE.MeshMatcapMaterial({
-    flatShading: true,
-    matcap: tMatcap,
-    map: tMap,
+  const tMRoads = new THREE.TextureLoader().load(mRoads);
+  const tMWater = new THREE.TextureLoader().load(mWater);
+  const tMRoofs = new THREE.TextureLoader().load(mRoofs);
+  const tMGrass = new THREE.TextureLoader().load(mGrass);
+  const tMWalls = new THREE.TextureLoader().load(mWalls);
+  const tMTrees = new THREE.TextureLoader().load(mTrees);
+  const tMTreesWhite = new THREE.TextureLoader().load(mTreesWhite);
+  // for some reasons, if I don't push them in an array and try to use them directly
+  // it only works for half of them...
+  const mesh = [];
+  const mats = [
+    // roads
+    { matcap: tMRoads, color: "#FFF" },
+    // water
+    { matcap: tMWater, color: "#4B73BC" },
+    // roofs
+    { matcap: tMRoofs, color: "#457DE1" },
+    // grass
+    { matcap: tMGrass, color: "#DDEAEE" },
+    // walls
+    { matcap: tMWalls, color: "#EECCED" },
+    // trees blueL1
+    { matcap: tMTrees, color: "#FFF" },
+    // trees white
+    { matcap: tMTreesWhite, color: "#FFF" },
+    // trees blueD1
+    { matcap: tMTrees, color: "#4B73BC" },
+    // trees blue
+    { matcap: tMTrees, color: "#538AE6" },
+  ];
+  gltf.scene.children[0].children.forEach((child) => {
+    mesh.push(child);
   });
-  group.add(mesh);
+  mesh.forEach((child, i) => {
+    child.material = new THREE.MeshMatcapMaterial({
+      flatShading: true,
+      color: mats[i].color,
+      matcap: mats[i].matcap,
+    });
+    group.add(child);
+  });
+
+  group.scale.set(20, 20, 20);
 }
 
 // First let's define an object :

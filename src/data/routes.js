@@ -4,7 +4,7 @@ import Dino404 from "components/pages/Dino404";
 import Blockchain from "components/pages/Blockchain";
 
 export const routes = {
-  home: { text: "Home", path: "/", component: Home, color: "#1A2755" },
+  home: { text: "Home", path: "/", component: Home, color: "#002466" },
   project1: {
     text: "Pixiji",
     path: "/pixiji",
