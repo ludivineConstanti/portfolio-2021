@@ -3,8 +3,7 @@ import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 
 import { strokeThickness, stButton } from "style/g";
-import { hoverButtonLink } from "style/SG";
-import { tButtonLink, tButtonLinkSpacing } from "style/typo";
+import { tButtonLink } from "style/typo";
 
 const link = `
   ${tButtonLink}
@@ -37,10 +36,6 @@ export const SExternalLink = styled(motion.a)`
 export const vText = {
   initial: { scale: 0 },
   animate: { scale: 1 },
-  whileHover: {
-    ...hoverButtonLink,
-    letterSpacing: [`${tButtonLinkSpacing}px`, `${tButtonLinkSpacing * 1.5}px`],
-  },
 };
 
 export const SText = styled(motion.p)``;

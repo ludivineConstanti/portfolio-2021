@@ -5,6 +5,7 @@ import { SButton, SGameOver, SInterface, SScore } from "./SGameUX";
 import { routes as r } from "data/routes";
 import { projectNumber as pNum } from "../data";
 import { removeObstacle } from "../tJsObjects/obstacles";
+import { vScale } from "style/SG";
 
 const GameUX = ({ gameState, score, updateValDino404 }) => {
   return (
@@ -17,6 +18,11 @@ const GameUX = ({ gameState, score, updateValDino404 }) => {
         {gameState !== "playing" && (
           <SButton
             s={{ color: r[`project${pNum}`].color }}
+            variants={vScale}
+            animate="animate"
+            initial="initial"
+            exit="initial"
+            whileHover="whileHover"
             onClick={() => {
               if (gameState === "game over") {
                 removeObstacle();

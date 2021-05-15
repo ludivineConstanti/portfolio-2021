@@ -1,0 +1,7 @@
+# Bug list
+
+## Not able to use stagger children and individual hover with framer motion
+
+When we animate with framer motion, stagger children allows us to make the element appear, one by, one, after a certain delay. For this, we just need to use a variant on the parent, specify stagger children in the transition property and then, use a variant on the child. Except, if we use the hover effect (while having the props animate initial and whileHover on the parent) it will show the hover state for all the children, when we hover the parent, and not each child individually. A work around is to specify the whileHover directly on the child, and not on the parent. The problem is that the animation works, but it doesn't go back to its initial state after hovering.
+
+It took me a while to figure it out, especially since there's [an example](https://codesandbox.io/s/framer-motion-side-menu-forked-4tvlp?file=/src/MenuItem.tsx) in the docs where it works normally, and I don't understand why it works there and not in my code, but if I specify the variants + the whileHover prop + the animate prop on the child, it fixes the problem (so the animate property needs to be specified in the variant, and then a second time as a prop, because if it's not in the variant, then the intro animation doesn't work, and if it's not in the prop, the element gets stucked on the hover state, after hovering it once).

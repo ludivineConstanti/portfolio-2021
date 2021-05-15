@@ -9,19 +9,6 @@ import {
   breakPointD,
 } from "style/g";
 
-export const vTitle = {
-  initial: {
-    transition: {
-      staggerChildren: 0.025,
-    },
-  },
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
 export const STitle = styled(motion.h1)`
   ${tTitle}
   color: ${(props) => props.s.color};

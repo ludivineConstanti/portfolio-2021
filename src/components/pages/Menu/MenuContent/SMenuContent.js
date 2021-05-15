@@ -24,7 +24,7 @@ export const SBackground = styled(motion.div)`
 
 const marginSocialMediaM = 40;
 
-export const SLinksContainer = styled.ul`
+export const SLinksContainer = styled(motion.ul)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@ export const SLinksContainer = styled.ul`
   }
 `;
 
-export const SSMContainer = styled.ul`
+export const SSMContainer = styled(motion.ul)`
   position: fixed;
   display: flex;
   justify-content: center;

@@ -8,6 +8,7 @@ import {
 } from "./SMenuContent";
 import MenuLink from "../MenuLink";
 import SocialMedia from "../SocialMedia";
+import { vStaggerChildren } from "style/SG";
 
 const MenuContent = ({ setIsOpen }) => {
   return (
@@ -18,7 +19,7 @@ const MenuContent = ({ setIsOpen }) => {
       exit="initial"
     >
       <nav>
-        <SLinksContainer>
+        <SLinksContainer variants={vStaggerChildren}>
           <MenuLink text="Home" to="/" setIsOpen={setIsOpen}></MenuLink>
           <MenuLink text="Pixiji" to="/pixiji" setIsOpen={setIsOpen}></MenuLink>
           <MenuLink
@@ -34,7 +35,7 @@ const MenuContent = ({ setIsOpen }) => {
         </SLinksContainer>
       </nav>
       <nav>
-        <SSMContainer>
+        <SSMContainer variants={vStaggerChildren}>
           <SocialMedia href="https://www.linkedin.com/in/ludivine-constanti/">
             <svg
               height="20px"

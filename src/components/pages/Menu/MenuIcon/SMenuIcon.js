@@ -11,7 +11,15 @@ import {
   breakPointD,
 } from "style/g";
 
-export const SMenuIcon = styled.div`
+import { vScale } from "style/SG";
+
+export const vMenuIcon = {
+  ...vScale,
+  aIsClose: { scale: 1 },
+  aIsOpen: { scale: 1 },
+};
+
+export const SMenuIcon = styled(motion.div)`
   position: fixed;
   top: ${borderMarginsM}px;
   right: ${borderMarginsM}px;

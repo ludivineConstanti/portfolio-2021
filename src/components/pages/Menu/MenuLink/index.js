@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { SMenuLink } from "./SMenuLink";
+import { SMenuLink, vMenuLink } from "./SMenuLink";
 
 const MenuLink = ({ text, to, setIsOpen }) => {
   return (
@@ -11,6 +11,9 @@ const MenuLink = ({ text, to, setIsOpen }) => {
         onClick={() => {
           setIsOpen(false);
         }}
+        variants={vMenuLink}
+        whileHover={{ scale: 1.25, letterSpacing: "8px" }}
+        animate={vMenuLink.animate}
       >
         {text}
       </SMenuLink>

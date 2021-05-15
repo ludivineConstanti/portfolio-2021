@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 
 import { convertText } from "helpers/animation";
-import { STitle, vTitle, vLetter, SLetter } from "./STitle";
+import { STitle, vLetter, SLetter } from "./STitle";
+import { vStaggerChildren } from "style/SG";
 
 const Title = ({ text, color, useCase }) => {
   return (
     <STitle
       s={{ color, useCase }}
-      variants={vTitle}
+      variants={vStaggerChildren}
       initial="initial"
       animate="animate"
       exit="initial"

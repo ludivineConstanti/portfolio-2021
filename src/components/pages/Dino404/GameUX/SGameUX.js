@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import { strokeThickness, stButton } from "style/g";
 import { tButtonLink, tDinoGame } from "style/typo";
@@ -21,7 +22,7 @@ export const SInterface = styled.div`
   color: ${(props) => props.s.color};
 `;
 
-export const SButton = styled.button`
+export const SButton = styled(motion.button)`
   ${tButtonLink}
   ${stButton}
   background-color: white;

@@ -40,7 +40,7 @@ export const tButtonLink = `
 export const tMenuLink = `
     font-family: utopia-std-headline;
     font-size: 48px;
-    line-height: 64px;
+    line-height: 72px;
 `;
 
 export const tDinoGame = `

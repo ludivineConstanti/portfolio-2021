@@ -16,10 +16,7 @@ const ButtonLink = ({
   const Component = external ? SExternalLink : SNavLink;
   const [nVText, setNVText] = useState(vText);
   useEffect(() => {
-    setNVText({
-      ...vText,
-      whileHover: { ...hoverButtonLink(direction), ...vText.whileHover },
-    });
+    setNVText({ ...vText, whileHover: hoverButtonLink(direction) });
   }, []);
   return (
     <Component
