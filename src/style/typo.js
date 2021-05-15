@@ -29,9 +29,11 @@ export const tTextProject = `
     line-height: 17px;
 `;
 
+export const tButtonLinkSpacing = 4;
+
 export const tButtonLink = `
     text-transform: uppercase;
-    letter-spacing: 4px;
+    letter-spacing: ${tButtonLinkSpacing}px;
     font-size: 16px;
 `;
 
@@ -43,7 +45,10 @@ export const tMenuLink = `
 
 export const tDinoGame = `
     font-family: utopia-std-headline;
-    font-size: 48px;
+    font-size: 8vw;
+    ${breakPointT} {
+        font-size: 48px;
+    }
 `;
 
 // illu of Pixiji project

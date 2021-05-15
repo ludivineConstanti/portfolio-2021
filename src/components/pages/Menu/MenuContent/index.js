@@ -1,12 +1,22 @@
 import PropTypes from "prop-types";
 
-import { SMenuContent, SLinksContainer, SSMContainer } from "./SMenuContent";
+import {
+  vBackground,
+  SBackground,
+  SLinksContainer,
+  SSMContainer,
+} from "./SMenuContent";
 import MenuLink from "../MenuLink";
 import SocialMedia from "../SocialMedia";
 
 const MenuContent = ({ setIsOpen }) => {
   return (
-    <SMenuContent>
+    <SBackground
+      variants={vBackground}
+      initial="initial"
+      animate="animate"
+      exit="initial"
+    >
       <nav>
         <SLinksContainer>
           <MenuLink text="Home" to="/" setIsOpen={setIsOpen}></MenuLink>
@@ -81,7 +91,7 @@ const MenuContent = ({ setIsOpen }) => {
           </SocialMedia>
         </SSMContainer>
       </nav>
-    </SMenuContent>
+    </SBackground>
   );
 };
 

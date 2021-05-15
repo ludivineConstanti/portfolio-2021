@@ -20,14 +20,13 @@ const Links = ({ grid, data, color }) => {
           {data.map((link, i) => (
             <ButtonLink
               key={`buttonLink${link.useCase}${i}`}
+              text={useCases[link.useCase].text}
               path={link.path}
               external={useCases[link.useCase].external}
               color={color}
               marginBottom={link.marginBottom ? `${rowGap}px` : "0px"}
               direction={link.direction}
-            >
-              {useCases[link.useCase].text}
-            </ButtonLink>
+            ></ButtonLink>
           ))}
         </SContainer>
       ) : (
@@ -43,14 +42,13 @@ const Links = ({ grid, data, color }) => {
           >
             <ButtonLink
               key={`buttonLink${link.useCase}${i}`}
+              text={useCases[link.useCase].text}
               path={link.path}
               external={useCases[link.useCase].external}
               color={color}
               marginBottom={link.marginBottom ? `${rowGap}px` : "0px"}
               direction={link.direction}
-            >
-              {useCases[link.useCase].text}
-            </ButtonLink>
+            ></ButtonLink>
           </SContainer>
         ))
       )}

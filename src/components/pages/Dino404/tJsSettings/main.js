@@ -1,4 +1,5 @@
 // import { OrbitControls } from "../../../../helpers/OrbitControls";
+import { breakPointDNum } from "style/g";
 
 import { createScene, createMats, scene, camera, renderer } from "./scene.js";
 import { createDino, dino, jumpDuration, landed } from "../tJsObjects/dino.js";
@@ -16,8 +17,11 @@ import { updateValDino404 } from "redux/slices/dino404Slice";
 const initial = {
   dinoSpeed: 0,
   obstacleTimeTracker: 0,
-  obstacleSpacing: Math.floor(Math.random() * 60),
-  gameSpeed: 5,
+  obstacleSpacing:
+    window.innerWidth > breakPointDNum
+      ? Math.floor(20 + Math.random() * 40)
+      : 90,
+  gameSpeed: window.innerWidth > breakPointDNum ? 5 : 3,
   isJumping: false,
   isLanding: false,
   boost: 0,
@@ -79,8 +83,8 @@ function animationLoop() {
     updateFloor(current.gameSpeed + current.boost, mats);
     updateObstacles(current.gameSpeed + current.boost);
 
-    current.dinoSpeed += 0.3;
-    current.gameSpeed += 0.001;
+    current.dinoSpeed += window.innerWidth > breakPointDNum ? 0.3 : 0.1;
+    current.gameSpeed += window.innerWidth > breakPointDNum ? 0.001 : 0.000001;
 
     if (landed) {
       current.isLanding = false;
@@ -100,8 +104,9 @@ function animationLoop() {
       // but higher speed helps with the jump
       // (otherwise, the jump needs to last very long to get past the obstacles)
       // so I put a boost speed during the jump
-      if (current.boost < 2) {
-        current.boost += 0.15;
+      const boostValue = window.innerWidth > breakPointDNum ? 2 : 3;
+      if (current.boost < boostValue) {
+        current.boost += boostValue / 10;
       }
     }
     // The jump needs to be fast, otherwise,
@@ -138,7 +143,7 @@ function resetGame() {
   current = { ...initial };
   console.log(current);
   store.dispatch(updateValDino404({ prop: ["score"], value: [current.score] }));
-  dino.reset();
+  dino.updatePos({ y: 0 });
 }
 
-export { current, init, renderer, cancelLoop, resetGame, isJumping };
+export { initial, current, init, renderer, cancelLoop, resetGame, isJumping };

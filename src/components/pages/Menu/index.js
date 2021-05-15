@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 
 import MenuIcon from "./MenuIcon";
 import MenuContent from "./MenuContent";
@@ -13,8 +14,14 @@ const Menu = ({ color }) => {
   }, [isOpen, color]);
   return (
     <>
-      <MenuIcon onClick={() => setIsOpen(!isOpen)} color={colorMenu}></MenuIcon>
-      {isOpen && <MenuContent setIsOpen={setIsOpen}></MenuContent>}
+      <MenuIcon
+        onClick={() => setIsOpen(!isOpen)}
+        isOpen={isOpen}
+        color={colorMenu}
+      ></MenuIcon>
+      <AnimatePresence exitBeforeEnter>
+        {isOpen && <MenuContent setIsOpen={setIsOpen}></MenuContent>}
+      </AnimatePresence>
     </>
   );
 };

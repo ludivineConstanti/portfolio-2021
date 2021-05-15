@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
+
+import { vLetter } from "style/SG";
 
 import {
   borderMargins,
@@ -9,14 +12,10 @@ import {
 } from "style/g";
 import { tText } from "style/typo";
 
-export const SText = styled.p`
+export const SText = styled(motion.p)`
   ${tText}
   display: block;
   padding-bottom: 20px;
-`;
-
-export const STextDeco = styled.span`
-  text-decoration: line-through;
 `;
 
 const textContainerWidth = "25vw";
@@ -43,3 +42,17 @@ export const STextContainer = styled.main`
     width: 25vw;
   }
 `;
+
+export const vText = {
+  initial: {},
+  animate: {
+    transition: {
+      staggerChildren: 0.005,
+    },
+  },
+};
+
+export const vLetterLT = {
+  initial: { ...vLetter.initial, textDecoration: "none" },
+  animate: { ...vLetter.animate, textDecoration: "line-through" },
+};

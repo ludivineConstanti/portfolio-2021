@@ -8,7 +8,7 @@ const Blockchain = () => {
   return (
     <>
       <Bubble></Bubble>
-      <Title useCase="top">An Intro to Blockchain</Title>
+      <Title text="An Intro to Blockchain" useCase="top"></Title>
       <InfosProject
         color={r[`project${pNum}`].color}
         concept={{ text: concept, grid: { cStart: 1, cSpan: 2 } }}

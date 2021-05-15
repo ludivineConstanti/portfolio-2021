@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import { routes as r, routesKeys as rKeys } from "data/routes";
 import { SBackground } from "./SApp";
@@ -24,17 +25,19 @@ const App = () => {
     <>
       <SBackground s={{ color }}></SBackground>
       <Menu color={color}></Menu>
-      <Switch>
-        {rKeys.map((key) => (
-          <Route
-            path={r[key].path}
-            key={r[key].path}
-            exact
-            component={r[key].component}
-          />
-        ))}
-        <Route component={Error404} />
-      </Switch>
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.key}>
+          {rKeys.map((key) => (
+            <Route
+              path={r[key].path}
+              key={r[key].path}
+              exact
+              component={r[key].component}
+            />
+          ))}
+          <Route component={Error404} />
+        </Switch>
+      </AnimatePresence>
     </>
   );
 };

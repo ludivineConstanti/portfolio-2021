@@ -1,35 +1,47 @@
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { SNavLink, SExternalLink } from "./SButtonLink";
+import { SNavLink, SExternalLink, vLink, SText, vText } from "./SButtonLink";
 import Arrow from "./Arrow";
+import { hoverButtonLink } from "style/SG";
 
 const ButtonLink = ({
-  children,
+  text,
   path,
   external,
   color,
   marginBottom,
   direction,
 }) => {
-  return external ? (
-    <SExternalLink
+  const Component = external ? SExternalLink : SNavLink;
+  const [nVText, setNVText] = useState(vText);
+  useEffect(() => {
+    setNVText({
+      ...vText,
+      whileHover: { ...hoverButtonLink(direction), ...vText.whileHover },
+    });
+  }, []);
+  return (
+    <Component
       href={path}
-      target="_blank"
+      to={path}
+      target={external ? "_blank" : ""}
       rel="noreferrer"
       s={{ color, marginBottom, direction }}
+      variants={vLink}
+      initial="initial"
+      animate="animate"
+      exit="initial"
+      whileHover="whileHover"
     >
-      {children}
+      <SText variants={nVText}>{text}</SText>
       <Arrow color={color} direction={direction}></Arrow>
-    </SExternalLink>
-  ) : (
-    <SNavLink to={path} s={{ color, marginBottom, direction }}>
-      {children}
-      <Arrow color={color} direction={direction}></Arrow>
-    </SNavLink>
+    </Component>
   );
 };
 
 ButtonLink.propTypes = {
+  text: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
   marginBottom: PropTypes.string,
   external: PropTypes.bool,

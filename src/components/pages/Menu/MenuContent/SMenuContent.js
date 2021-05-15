@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import {
   zIMenu,
@@ -8,7 +9,12 @@ import {
   sSocialMedia,
 } from "style/g";
 
-export const SMenuContent = styled.div`
+export const vBackground = {
+  initial: { clipPath: "circle(0%)" },
+  animate: { clipPath: "circle(100%)" },
+};
+
+export const SBackground = styled(motion.div)`
   z-index: ${zIMenu};
   position: fixed;
   height: 100vh;

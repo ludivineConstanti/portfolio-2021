@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 
 import { strokeThickness, stButton } from "style/g";
-import { tButtonLink } from "style/typo";
+import { hoverButtonLink } from "style/SG";
+import { tButtonLink, tButtonLinkSpacing } from "style/typo";
 
 const link = `
   ${tButtonLink}
@@ -10,7 +12,12 @@ const link = `
   justify-content: flex-end;
 `;
 
-export const SNavLink = styled(NavLink)`
+export const vLink = {
+  initial: { width: 0 },
+  animate: { width: "auto" },
+};
+
+export const SNavLink = styled(motion(NavLink))`
   ${link}
   color: ${(props) => props.s.color};
   border: ${strokeThickness}px solid ${(props) => props.s.color};
@@ -18,7 +25,7 @@ export const SNavLink = styled(NavLink)`
     props.s.direction === "right" ? "row" : "row-reverse"};
 `;
 
-export const SExternalLink = styled.a`
+export const SExternalLink = styled(motion.a)`
   ${link}
   color: ${(props) => props.s.color};
   border: ${strokeThickness}px solid ${(props) => props.s.color};
@@ -26,3 +33,14 @@ export const SExternalLink = styled.a`
   flex-direction: ${(props) =>
     props.s.direction === "right" ? "row" : "row-reverse"};
 `;
+
+export const vText = {
+  initial: { scale: 0 },
+  animate: { scale: 1 },
+  whileHover: {
+    ...hoverButtonLink,
+    letterSpacing: [`${tButtonLinkSpacing}px`, `${tButtonLinkSpacing * 1.5}px`],
+  },
+};
+
+export const SText = styled(motion.p)``;

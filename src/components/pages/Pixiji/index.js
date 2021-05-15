@@ -8,7 +8,7 @@ import { projectNumber as pNum, concept, technos } from "./data";
 const Pixiji = () => {
   return (
     <>
-      <Title useCase="top">Pixiji</Title>
+      <Title text="Pixiji" useCase="top"></Title>
       <RabbitOnMoon></RabbitOnMoon>
       <InfosProject
         color={r[`project${pNum}`].color}

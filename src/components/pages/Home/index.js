@@ -1,19 +1,32 @@
 import PParis from "./PParis";
 import Title from "components/elements/Title";
 import ButtonLink from "components/elements/ButtonLink";
-import { STextContainer, SText, STextDeco } from "./SHome";
+import { convertText } from "helpers/animation";
+import { vLetter, SLetter } from "style/SG";
+import { STextContainer, vText, SText, vLetterLT } from "./SHome";
 import { routes as r } from "data/routes";
 
 const Home = () => {
   return (
     <>
       <STextContainer>
-        <Title>Welcome!</Title>
-        <SText>
-          My name is Ludivine Constanti, I am a versatile, multilingual, French{" "}
-          <STextDeco>Art Director</STextDeco> developer.
+        <Title text="Welcome!"></Title>
+        <SText
+          variants={vText}
+          initial="initial"
+          animate="animate"
+          exit="initial"
+        >
+          {convertText(
+            "My name is Ludivine Constanti, I am a versatile, multilingual, French ",
+            "introFirstPart",
+            SLetter,
+            vLetter
+          )}
+          {convertText("Art Director", "introSecondPart", SLetter, vLetterLT)}
+          {convertText(" developer.", "introThirdPart", SLetter, vLetter)}
         </SText>
-        <ButtonLink path={r.project1.path}>See projects</ButtonLink>
+        <ButtonLink text="See projects" path={r.project1.path}></ButtonLink>
       </STextContainer>
       <PParis />
     </>

@@ -7,7 +7,7 @@ import { projectNumber as pNum, concept, technos } from "./data";
 const Dino404 = () => {
   return (
     <>
-      <Title useCase="top">Dino 404</Title>
+      <Title text="Dino 404" useCase="top"></Title>
       <Game></Game>
       <InfosProject
         extraHeight="25vh"

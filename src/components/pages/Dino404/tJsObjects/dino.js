@@ -1,15 +1,24 @@
 import * as THREE from "three";
 
+import { breakPointDNum } from "style/g";
+
 import { scene } from "../tJsSettings/scene.js";
-
 import { current } from "../tJsSettings/main.js";
-
-// makes dino available to global scope
-let dino;
-const dinoPosX = -120;
 
 let jumpDuration = 0;
 let landed = false;
+// makes dino available to global scope
+let dino;
+let dinoPosX;
+
+function returnDinoX() {
+  if (window.innerWidth > breakPointDNum) {
+    return -window.innerWidth / 10;
+  }
+  return -window.innerWidth / 3;
+}
+
+dinoPosX = returnDinoX();
 
 // positions are a nightmare to update when need to change it in translate + set + the children
 // + animation functions...
@@ -376,8 +385,11 @@ Dino.prototype.land = function () {
   }
 };
 
-Dino.prototype.reset = function () {
-  this.mesh.position.y = 0;
+Dino.prototype.updatePos = function (posObj) {
+  const posKeys = Object.keys(posObj);
+  posKeys.forEach((key) => {
+    this.mesh.position[key] = posObj[key];
+  });
 };
 
-export { createDino, dino, jumpDuration, landed, dinoPosX };
+export { createDino, dino, jumpDuration, landed, dinoPosX, returnDinoX };

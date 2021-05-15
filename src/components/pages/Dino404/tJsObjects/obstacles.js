@@ -204,6 +204,15 @@ function fillcactusArr(mats) {
     1.4,
     "s1Four"
   );
+  modifyColor(
+    mats,
+    [cactus2Geom, cactus2_B1_Geom, cactus2_B2_Geom],
+    0,
+    [],
+    0,
+    1.4,
+    "s1Four"
+  );
 }
 
 function getObstacle(firstArr, recycledArr, animatedArr, posX) {

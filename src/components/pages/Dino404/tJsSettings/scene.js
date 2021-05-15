@@ -5,6 +5,8 @@ import matcapTest from "../tJsAssets/try25.png";
 import matcapFloor from "../tJsAssets/try25B.png";
 
 import { borderMargins3, breakPointDNum } from "style/g";
+import { dino, returnDinoX } from "../tJsObjects/dino";
+import { initial, current } from "./main";
 
 let scene, camera, fieldOfView, aspectRatio, nearPlane, farPlane, renderer;
 
@@ -13,11 +15,13 @@ let HEIGHT;
 let WIDTH;
 let limitR;
 
+// have a function to return the size, this way I can define it
+// in one place and use it in mutliple places afterward
 function returnWidth() {
   let tempWidth;
   if (window.innerWidth <= breakPointDNum) {
     tempWidth = window.innerWidth;
-    limitR = tempWidth / 2;
+    limitR = tempWidth;
   } else {
     tempWidth = window.innerWidth - borderMargins3 * 2;
     limitR = tempWidth / 2.5;
@@ -26,6 +30,9 @@ function returnWidth() {
 }
 
 function returnHeight() {
+  if (window.innerWidth <= breakPointDNum) {
+    return window.innerHeight / 3;
+  }
   return window.innerHeight / 2;
 }
 
@@ -94,6 +101,8 @@ function handleWindowResize() {
   camera.aspect = WIDTH / HEIGHT;
   camera.updateProjectionMatrix();
   renderer.render(scene, camera);
+  dino.updatePos({ x: returnDinoX() });
+  current.gameSpeed = initial.gameSpeed;
 }
 
 // MATERIALS ************************************************************************

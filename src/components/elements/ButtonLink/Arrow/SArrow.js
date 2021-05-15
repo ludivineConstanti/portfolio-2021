@@ -1,8 +1,14 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 import { strokeThickness } from "style/g";
 
-export const SArrow = styled.div`
+export const vArrow = {
+  initial: { scale: 0 },
+  animate: { scale: 1 },
+};
+
+export const SArrow = styled(motion.div)`
   position: relative;
   display: flex;
   height: 12px;
