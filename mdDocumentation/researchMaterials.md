@@ -20,3 +20,11 @@ I then decided to use individual matcaps based on the colors. Instead of importi
 I import meshes separately that I all add to a group, I can then give one material per mesh. This allows much more saturated colors. By trying various material, 
 I thought the reflecting one looked good on the geometrical shapes that symbolize trees 🌳 so I also separated them to give them a special matcap.
 I also added some reflection for the water 🌊
+
+![comparison](https://user-images.githubusercontent.com/24965333/118394829-5599ad00-b647-11eb-99bf-f956690d2f33.jpg)
+
+We can see however that the colors are too saturated. Above is the planet, in three.js, without matcap and with some light in the scene (on the left) and the new version with matcap (on the right). We always think shadows are grey / black and lighting is white, because they are rarely the most saturated part of the object. Except with the matcaps I used, they are (it's quite obvious for the pink one).
+
+![planet_l](https://user-images.githubusercontent.com/24965333/118394853-7d891080-b647-11eb-9fd8-ffa7847b5941.jpg)
+
+I therefore made a new version where I desaturated the matcap picture on the top and bottom (lightest and darkest side).
