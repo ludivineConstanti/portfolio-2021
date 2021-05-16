@@ -1,6 +1,6 @@
 # 💻 Dev Portfolio 2021
 
-![planetL](https://user-images.githubusercontent.com/24965333/118394882-a6a9a100-b647-11eb-8502-8ad82001a99b.jpg)
+![planet](https://user-images.githubusercontent.com/24965333/118395219-63e8c880-b649-11eb-89b3-cc541c53cee5.jpg)
 
 The projects shown in this portfolio were done entirely by me (including concept, design...) except for the project "An intro to Blockchain", which I worked on with 3 other people. You can look at their repositories here:
 
