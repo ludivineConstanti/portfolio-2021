@@ -1,5 +1,5 @@
-import { createIllu } from "../helpers/createIllu";
-import { tArrKanjis } from "./dataKanji";
+import { returnFormattedArrs } from "../helpers/createIllu";
+import { arrKanjis } from "./dataKanji";
 
 const orangeL4 = "#FFDFD9";
 const orangeL3 = "#FFBFB3";
@@ -853,13 +853,8 @@ const cloudBR = [
   ],
 ];
 
-export const arrIlluFormatted = [];
 const arrCloudDragon = [cloudTop, dragon, cloudDragon, cloudBL, cloudBR];
-
-let beginAtIndex = 0;
-for (let i = 0; i < arrCloudDragon.length; i += 1) {
-  arrIlluFormatted.push(
-    createIllu(arrCloudDragon[i], i, beginAtIndex, tArrKanjis)
-  );
-  beginAtIndex += arrCloudDragon[i].length;
-}
+export const arrIlluCloudDragon = returnFormattedArrs(
+  arrCloudDragon,
+  arrKanjis
+);

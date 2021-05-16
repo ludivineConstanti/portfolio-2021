@@ -2,17 +2,31 @@ import styled from "styled-components";
 import {
   squareUnitM,
   squareUnit,
+  squareUnitT,
   breakPointD,
   breakPointT,
   illuDimensions,
   illuCustomPos,
+  borderMargins,
+  borderMarginsM,
+  sMenuIcon,
 } from "style/g";
+
+const goUp = `-${borderMargins + sMenuIcon}px`;
+const goUpT = `-${borderMarginsM + sMenuIcon}px`;
 
 export const SContainer = styled.div`
   position: relative;
-  height: 45vw;
+  height: calc(${squareUnitM} * 25);
   ${breakPointT} {
-    height: 25vw;
+    top: ${goUpT};
+    margin-bottom: ${goUpT};
+    height: calc(${squareUnitT} * 25);
+  }
+  ${breakPointD} {
+    top: ${goUp};
+    margin-bottom: ${goUp};
+    height: calc(${squareUnit} * 25);
   }
 `;
 
@@ -21,10 +35,10 @@ const dPlanet = illuDimensions(10, 10);
 export const SPlanet = styled.div`
   ${dPlanet}
   left: calc(${squareUnitM} * 5);
-  bottom: calc(${squareUnitM} * 22);
+  bottom: calc(${squareUnitM} * 15);
   ${breakPointD} {
-    left: calc(${squareUnit} * 18);
-    top: calc(${squareUnit});
+    left: calc(${squareUnit} * 30);
+    bottom: calc(${squareUnit} * 10);
   }
 `;
 

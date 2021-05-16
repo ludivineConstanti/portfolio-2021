@@ -1,18 +1,13 @@
-// == Import npm
-import React from "react";
+import { connect } from "react-redux";
+import Component from "./Component";
+import { updateArrIllu } from "redux/slices/pixijiSlice";
 
-// == Import
-import Stars from "../Stars";
-import { arrIlluFormatted } from "./dataIllu";
-import { SContainer, SPlanet, SRabbit, SMoon } from "./SRabbitOnMoon";
+const mapStateToProps = (state) => ({
+  arrIlluFormatted: state.pixiji.rabbitOnMoon.currentKanjis,
+});
 
-const RabbitOnMoon = () => (
-  <SContainer>
-    <Stars color="#FFDF8E" />
-    <SPlanet>{arrIlluFormatted[0]}</SPlanet>
-    <SRabbit>{arrIlluFormatted[1]}</SRabbit>
-    <SMoon>{arrIlluFormatted[2]}</SMoon>
-  </SContainer>
-);
-// == Export
-export default RabbitOnMoon;
+const mapDispatchToProps = (dispatch) => ({
+  updateArrIllu: (payload) => dispatch(updateArrIllu(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

@@ -51,6 +51,12 @@ export const tDinoGame = `
     }
 `;
 
+export const tPixijiCTA = `
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    font-size: 13px;
+`;
+
 // illu of Pixiji project
 
 export const tMSIFontSize = "12";
@@ -60,6 +66,7 @@ export const tMSquareInfos = `
     color: white;
     letter-spacing: 0.75px;
 `;
+
 export const tMSquareKanji = `
     color: white;
     font-size: 20px;

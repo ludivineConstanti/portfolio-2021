@@ -4,7 +4,7 @@ export const useCases = {
   code: {
     text: (
       <>
-        <SHiddenText>see</SHiddenText>
+        <SHiddenText>See</SHiddenText>
         <span>&nbsp;</span>code
       </>
     ),
@@ -19,11 +19,12 @@ export const useCases = {
     ),
     external: true,
   },
-  prev: { text: <SHiddenText>Previous</SHiddenText>, external: false },
+  prev: { text: <>Previous</>, external: false },
   next: {
     text: (
       <>
-        <SHiddenText>Next project</SHiddenText>
+        Next<span>&nbsp;</span>
+        <SHiddenText>project</SHiddenText>
       </>
     ),
     external: false,

@@ -6,10 +6,10 @@ import { Color } from "framer";
 
 // == Import
 import { zIMainSquareHover } from "style/g";
-import { tMSIFontSize, tMSIBFontSize } from "style/typo";
+import { tMSIFontSize } from "style/typo";
 import { motion } from "framer-motion";
 import { aAnimateOn } from "../helpers/animation";
-import SMainSquare, { SKanji, SInfos, SInfosBottom } from "./SMainSquare";
+import SMainSquare, { SKanji, SInfos } from "./SMainSquare";
 
 const MainSquare = ({
   size,
@@ -21,7 +21,6 @@ const MainSquare = ({
   kanjisArr,
 }) => {
   const [answer, setAnswer] = useState(false);
-  const [infos, setInfos] = useState(false);
   const [vMainSquare, setVMainSquare] = useState({
     initial: { scale: 0 },
     animateOff: { scale: 0.2 },
@@ -30,12 +29,13 @@ const MainSquare = ({
   });
   const [vInfos, setVInfos] = useState({
     infos: {},
-    infosB: {},
     kana: {},
     kanji: {},
   });
 
   useEffect(() => {
+    const margin = 4;
+
     const colorI = Color(color);
     let colorD1 = Color.darken(colorI, colorI.l * 30);
     colorD1 = Color.toHexString(Color.desaturate(colorD1, colorI.l * 15));
@@ -47,7 +47,7 @@ const MainSquare = ({
         scale: scaleFactor,
         zIndex: zIMainSquareHover,
         transformOrigin: position,
-        padding: `${8 / scaleFactor}px`,
+        padding: `${margin / scaleFactor}px`,
         backgroundColor: colorD1,
         transition: { type: "spring", damping: 15 },
       },
@@ -62,20 +62,13 @@ const MainSquare = ({
           fontSize: `${tMSIFontSize / scaleFactor}px`,
         },
       },
-      infosB: {
-        initial: { fontSize: 0 },
-        whileHoverOn: {
-          fontSize: `${tMSIBFontSize / scaleFactor}px`,
-          bottom: `${8 / scaleFactor}px`,
-        },
-      },
       kana: {
-        whileHoverOn: { marginRight: `${8 / scaleFactor}px` },
+        whileHoverOn: { marginRight: `${margin / scaleFactor}px` },
       },
       kanji: {
         whileHoverOn: {
-          fontSize: `${28 / scaleFactor}px`,
-          margin: `${8 / scaleFactor}px`,
+          fontSize: `${20 / scaleFactor}px`,
+          margin: `${margin / scaleFactor}px`,
         },
       },
     });
@@ -85,13 +78,11 @@ const MainSquare = ({
     if (!answer && kanjisArr[kanjiIndex]) {
       if (kanjisArr[kanjiIndex].answer) {
         setAnswer(kanjisArr[kanjiIndex].answer);
-        setInfos(kanjisArr[kanjiIndex].infosAnswer);
       } else {
         setAnswer(kanjisArr[kanjiIndex]);
       }
     } else if (!kanjisArr.length) {
       setAnswer(false);
-      setInfos(false);
     }
     // checkForAnimation();
   }, [kanjisArr]);
@@ -128,11 +119,6 @@ const MainSquare = ({
           </SInfos>
           <SKanji variants={vInfos.kanji}>{answer.kanji}</SKanji>
           <SInfos variants={vInfos.infos}>{answer.en}</SInfos>
-          {infos.answeredWrong > 0 && (
-            <SInfosBottom variants={vInfos.infosB}>
-              wrong: {infos.answeredWrong} time{infos.answeredWrong > 1 && "s"}
-            </SInfosBottom>
-          )}
         </>
       )}
     </SMainSquare>

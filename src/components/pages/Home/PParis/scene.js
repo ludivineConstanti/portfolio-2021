@@ -111,7 +111,7 @@ function handleLoad(gltf) {
     // roads
     { matcap: tMRoads, color: "#FFF" },
     // water
-    { matcap: tMWater, color: "#4B73BC" },
+    { matcap: tMWater, color: "#5F79A9" },
     // roofs
     { matcap: tMRoofs, color: "#6997E8" },
     // grass

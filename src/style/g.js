@@ -13,10 +13,10 @@ export const columnGap = 64;
 export const rowGap = columnGap / 2;
 
 // z-index
-export const zIMenuIcon = 3;
-export const zIMenu = 2;
+export const zIMenuIcon = 4;
+export const zIMenu = 3;
+export const zIMSContainerHover = 2;
 export const zIDinoGame = 1;
-export const zIMSContainerHover = 1;
 export const zIInfosProject = 0;
 export const zIBackground = -1;
 
@@ -33,8 +33,8 @@ export const breakPointD = `@media only screen and (min-width: ${breakPointDNum}
 
 // for Illu of Pixiji
 export const squareUnitM = "2vw";
-export const squareUnitT = "1.5vw";
-export const squareUnit = "1.1vw";
+export const squareUnitT = "1.2vw";
+export const squareUnit = "0.8vw";
 
 //
 
@@ -48,7 +48,7 @@ export const stButton = `
 
 // for Illu of Pixiji
 export const illuDimensions = (height, width) => `
-position: absolute;
+  position: absolute;
   display: grid;
   grid-template: repeat(${height}, 1fr) / repeat(${width}, 1fr);
   height: calc(${height} * ${squareUnitM});

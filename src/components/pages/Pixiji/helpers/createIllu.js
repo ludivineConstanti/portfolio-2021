@@ -45,3 +45,18 @@ export const createIllu = (
   }
   return formattedData;
 };
+
+export const returnFormattedArrs = (arrIllus, arrKanjis) => {
+  const arrIllusFormatted = { withKanjis: [], withoutKanjis: [] };
+  let beginAtIndex = 0;
+  for (let i = 0; i < arrIllus.length; i += 1) {
+    arrIllusFormatted.withKanjis.push(
+      createIllu(arrIllus[i], i, beginAtIndex, arrKanjis)
+    );
+    arrIllusFormatted.withoutKanjis.push(
+      createIllu(arrIllus[i], i, beginAtIndex, [])
+    );
+    beginAtIndex += arrIllus[i].length;
+  }
+  return arrIllusFormatted;
+};

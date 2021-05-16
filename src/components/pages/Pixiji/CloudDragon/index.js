@@ -1,28 +1,13 @@
-// == Import npm
-import React from "react";
+import { connect } from "react-redux";
+import Component from "./Component";
+import { updateArrIllu } from "redux/slices/pixijiSlice";
 
-// == Import
-import Stars from "../Stars";
-import { orangeL2, arrIlluFormatted } from "./dataIllu";
-import {
-  SContainer,
-  SCloudTop,
-  SDragon,
-  SCloudDragon,
-  SCloudBL,
-  SCloudBR,
-} from "./SCloudDragon";
+const mapStateToProps = (state) => ({
+  arrIlluFormatted: state.pixiji.cloudDragon.currentKanjis,
+});
 
-const CloudDragon = () => (
-  <SContainer>
-    <Stars color={orangeL2} />
-    <SCloudTop>{arrIlluFormatted[0]}</SCloudTop>
-    <SDragon>{arrIlluFormatted[1]}</SDragon>
-    <SCloudDragon>{arrIlluFormatted[2]}</SCloudDragon>
-    <SCloudBL>{arrIlluFormatted[3]}</SCloudBL>
-    <SCloudBR>{arrIlluFormatted[4]}</SCloudBR>
-  </SContainer>
-);
+const mapDispatchToProps = (dispatch) => ({
+  updateArrIllu: (payload) => dispatch(updateArrIllu(payload)),
+});
 
-// == Export
-export default CloudDragon;
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

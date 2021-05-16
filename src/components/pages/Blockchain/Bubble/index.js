@@ -17,7 +17,7 @@ const Bubble = () => {
       style={{
         position: "fixed",
         zIndex: -1,
-        filter: "brightness(1.5)",
+        filter: "brightness(2)",
       }}
     />
   );

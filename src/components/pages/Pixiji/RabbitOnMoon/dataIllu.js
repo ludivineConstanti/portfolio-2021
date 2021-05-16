@@ -1,5 +1,5 @@
-import { createIllu } from "../helpers/createIllu";
-import { tArrKanjis } from "./dataKanji";
+import { returnFormattedArrs } from "../helpers/createIllu";
+import { arrKanjis } from "./dataKanji";
 
 const planet = [
   [
@@ -792,13 +792,8 @@ const moon = [
   ],
 ];
 
-export const arrIlluFormatted = [];
 export const arrRabbitOnMoon = [planet, rabbit, moon];
-
-let beginAtIndex = 0;
-for (let i = 0; i < arrRabbitOnMoon.length; i += 1) {
-  arrIlluFormatted.push(
-    createIllu(arrRabbitOnMoon[i], i, beginAtIndex, tArrKanjis)
-  );
-  beginAtIndex += arrRabbitOnMoon[i].length;
-}
+export const arrIlluRabbitOnMoon = returnFormattedArrs(
+  arrRabbitOnMoon,
+  arrKanjis
+);

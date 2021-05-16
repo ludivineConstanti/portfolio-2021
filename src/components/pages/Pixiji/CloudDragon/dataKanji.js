@@ -1,4 +1,4 @@
-const arrKanjis = [
+export const arrKanjis = [
   {
     id: 1,
     kanji: "一",
@@ -144,5 +144,3 @@ const arrKanjis = [
     quizId: 1,
   },
 ];
-
-export const tArrKanjis = arrKanjis;
