@@ -1,5 +1,7 @@
 # 💻 Dev Portfolio 2021
 
+![planetL](https://user-images.githubusercontent.com/24965333/118394882-a6a9a100-b647-11eb-8502-8ad82001a99b.jpg)
+
 The projects shown in this portfolio were done entirely by me (including concept, design...) except for the project "An intro to Blockchain", which I worked on with 3 other people. You can look at their repositories here:
 
 - [Pixiji](https://github.com/ludivineConstanti/Pixiji)
