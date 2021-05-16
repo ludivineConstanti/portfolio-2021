@@ -7,10 +7,10 @@ import paris from "./paris.gltf";
 import mWater from "./textures/waterT4.jpg";
 import mTrees from "./textures/treesT1.png";
 import mTreesWhite from "./textures/treesT2.jpg";
-import mWalls from "./textures/wallsT3.jpg";
-import mRoofs from "./textures/roofsT1.jpg";
+import mWalls from "./textures/wallsT6.jpg";
+import mRoofs from "./textures/roofsT4.jpg";
 import mRoads from "./textures/roadsT1.png";
-import mGrass from "./textures/grassT4.jpg";
+import mGrass from "./textures/grassT5.jpg";
 
 let scene,
   camera,
@@ -113,9 +113,9 @@ function handleLoad(gltf) {
     // water
     { matcap: tMWater, color: "#4B73BC" },
     // roofs
-    { matcap: tMRoofs, color: "#457DE1" },
+    { matcap: tMRoofs, color: "#6997E8" },
     // grass
-    { matcap: tMGrass, color: "#DDEAEE" },
+    { matcap: tMGrass, color: "#E0F5EB" },
     // walls
     { matcap: tMWalls, color: "#EECCED" },
     // trees blueL1
@@ -133,7 +133,7 @@ function handleLoad(gltf) {
   mesh.forEach((child, i) => {
     child.material = new THREE.MeshMatcapMaterial({
       flatShading: true,
-      color: mats[i].color,
+      color: mats[i].color ? mats[i].color : "",
       matcap: mats[i].matcap,
     });
     group.add(child);

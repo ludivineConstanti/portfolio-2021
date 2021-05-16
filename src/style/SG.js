@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 export const vLetter = {
   initial: { opacity: 0, scale: 0, y: 15 },
   animate: { opacity: 1, scale: 1, y: 0 },
-  whileHover: { scale: 0.5 },
 };
 
 export const SLetter = styled(motion.span)`
@@ -38,6 +37,6 @@ export const hoverButtonLink = (direction) => ({
     repeat: Infinity,
     repeatType: "mirror",
     type: "easeInOut",
-    duration: 0.5,
+    duration: 0.4,
   },
 });

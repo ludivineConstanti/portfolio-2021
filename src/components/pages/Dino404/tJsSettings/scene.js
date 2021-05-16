@@ -1,8 +1,8 @@
 import * as THREE from "three";
 
-import matcap from "../tJsAssets/matCap.jpg";
-import matcapTest from "../tJsAssets/try25.png";
-import matcapFloor from "../tJsAssets/try25B.png";
+import matcap from "../tJsAssets/mT50.png";
+import matcapTest from "../tJsAssets/mR0v4.png";
+import matcapFloor from "../tJsAssets/mT70.png";
 
 import { borderMargins3, breakPointDNum } from "style/g";
 import { dino, returnDinoX } from "../tJsObjects/dino";
@@ -84,9 +84,6 @@ const createScene = function (container) {
     antialias: true,
   });
 
-  // Change the colors => suppose to make it more accurate
-  renderer.outputEncoding = THREE.sRGBEncoding;
-
   // Define the size of the renderer; in this case,
   // it will fill the entire screen
   renderer.setSize(WIDTH, HEIGHT);
@@ -109,11 +106,11 @@ function handleWindowResize() {
 
 function createMats() {
   const Colors = {
-    red: new THREE.Color(0xef4239).convertSRGBToLinear(),
-    blue: new THREE.Color(0x4284f7).convertSRGBToLinear(),
-    green: new THREE.Color(0x31ab52).convertSRGBToLinear(),
-    yellow: new THREE.Color(0xffbd08).convertSRGBToLinear(),
-    white: new THREE.Color(0xffffff).convertSRGBToLinear(),
+    red: "#ef4239",
+    blue: "#4284f7",
+    green: "#31ab52",
+    yellow: "#ffbd08",
+    white: "#ffffff",
   };
 
   const tMatcap = new THREE.TextureLoader().load(matcap);
@@ -153,7 +150,7 @@ function createMats() {
 function assignColor(color, geom) {
   // ref => https://threejsfundamentals.org/threejs/lessons/threejs-optimize-lots-of-objects.html
   // get the colors as an array of values from 0 to 255
-  const rgb = color.toArray().map((v) => v * 255);
+  const rgb = new THREE.Color(color).toArray().map((v) => v * 255);
 
   // make an array to store colors for each vertex
   const numVerts = geom.getAttribute("position").count;
