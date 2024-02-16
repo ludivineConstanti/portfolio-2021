@@ -2,6 +2,8 @@
 
 ![planet](https://user-images.githubusercontent.com/24965333/118395219-63e8c880-b649-11eb-89b3-cc541c53cee5.jpg)
 
+[Here is the link to a deployed version of the website](https://ludivine-constanti.surge.sh/)
+
 The projects shown in this portfolio were done entirely by me (including concept, design...) except for the project "An intro to Blockchain", which I worked on with 3 other people. You can look at their repositories here:
 
 - [Pixiji](https://github.com/ludivineConstanti/Pixiji)
